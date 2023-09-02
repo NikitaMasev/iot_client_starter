@@ -39,11 +39,14 @@ class IotServiceConnector implements Runnable, IotChannelProvider {
   }
 
   void _tryConnect() {
-    print('_tryConnect');
-    _channel = IOWebSocketChannel.connect(
-      Uri.parse('ws://$ip:$port'),
-      pingInterval: pingInterval,
-    );
+    try {
+      _channel = IOWebSocketChannel.connect(
+        Uri.parse('ws://$ip:$port'),
+        pingInterval: pingInterval,
+      );
+    } catch (e) {
+      print(e.toString());
+    }
 
     _channel.stream.listen(
       (final rawData) {
