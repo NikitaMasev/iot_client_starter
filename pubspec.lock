@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.2"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      sha256: b74e3842a52c61f8819a1ec8444b4de5419b41a7465e69d4aa681445377398b0
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.1"
   async:
     dependency: transitive
     description:
@@ -121,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  clock:
+    dependency: transitive
+    description:
+      name: clock
+      sha256: cb6d7f03e1de671e34607e909a7213e31d7752be4fb66a86d29fe1eb14bfb5cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   code_builder:
     dependency: transitive
     description:
@@ -161,6 +177,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  encrypt:
+    dependency: transitive
+    description:
+      name: encrypt
+      sha256: "4fd4e4fdc21b9d7d4141823e1e6515cd94e7b8d84749504c232999fba25d9bbb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
   file:
     dependency: transitive
     description:
@@ -241,6 +265,24 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  iot_internal:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "526e99a47644632e3025597345351702e7738230"
+      url: "https://github.com/NikitaMasev/iot_internal.git"
+    source: git
+    version: "1.0.0"
+  iot_models:
+    dependency: transitive
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "1e096bb02a500c3ac2ef19ac41df5571a8dde427"
+      url: "https://github.com/NikitaMasev/iot_models.git"
+    source: git
+    version: "1.0.0"
   js:
     dependency: transitive
     description:
@@ -321,6 +363,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.3"
   pool:
     dependency: transitive
     description:
