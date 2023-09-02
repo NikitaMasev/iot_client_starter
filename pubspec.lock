@@ -270,7 +270,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "526e99a47644632e3025597345351702e7738230"
+      resolved-ref: "4310c6005a98fde5f5aa75389baf124713a4abfa"
       url: "https://github.com/NikitaMasev/iot_internal.git"
     source: git
     version: "1.0.0"
@@ -279,7 +279,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1e096bb02a500c3ac2ef19ac41df5571a8dde427"
+      resolved-ref: "79df763bb688d9e4fa08f198d6c249600cc12252"
       url: "https://github.com/NikitaMasev/iot_models.git"
     source: git
     version: "1.0.0"

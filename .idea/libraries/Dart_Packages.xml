@@ -236,14 +236,14 @@
         <entry key="iot_internal">
           <value>
             <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-526e99a47644632e3025597345351702e7738230//lib" />
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-4310c6005a98fde5f5aa75389baf124713a4abfa//lib" />
             </list>
           </value>
         </entry>
         <entry key="iot_models">
           <value>
             <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-1e096bb02a500c3ac2ef19ac41df5571a8dde427//lib" />
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-79df763bb688d9e4fa08f198d6c249600cc12252//lib" />
             </list>
           </value>
         </entry>
@@ -258,13 +258,6 @@
           <value>
             <list>
               <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.8.1/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="json_serializable">
-          <value>
-            <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/json_serializable-6.6.2/lib" />
             </list>
           </value>
         </entry>
@@ -345,13 +338,6 @@
             </list>
           </value>
         </entry>
-        <entry key="rxdart">
-          <value>
-            <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.27.7/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="shelf">
           <value>
             <list>
@@ -370,13 +356,6 @@
           <value>
             <list>
               <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_gen-1.3.2/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="source_helper">
-          <value>
-            <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_helper-1.3.4/lib" />
             </list>
           </value>
         </entry>
@@ -467,8 +446,8 @@
       </option>
     </properties>
     <CLASSES>
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-526e99a47644632e3025597345351702e7738230//lib" />
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-1e096bb02a500c3ac2ef19ac41df5571a8dde427//lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-4310c6005a98fde5f5aa75389baf124713a4abfa//lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-79df763bb688d9e4fa08f198d6c249600cc12252//lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-61.0.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-5.13.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.4.2/lib" />
@@ -504,7 +483,6 @@
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/io-1.0.4/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.8.1/lib" />
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/json_serializable-6.6.2/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.0.1/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.16/lib" />
@@ -516,11 +494,9 @@
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/pool-1.5.1/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.1.4/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/pubspec_parse-1.2.3/lib" />
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.27.7/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/shelf-1.4.1/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/shelf_web_socket-1.0.4/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_gen-1.3.2/lib" />
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_helper-1.3.4/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.1/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.2/lib" />
