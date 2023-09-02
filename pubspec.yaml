@@ -15,10 +15,6 @@ dependencies:
 
   #Data
   freezed_annotation: ^2.2.0
-  json_annotation: ^4.7.0
-
-  #Tools
-  rxdart: ^0.27.5
 
   iot_internal:
     git:
@@ -28,5 +24,4 @@ dependencies:
 dev_dependencies:
   freezed: ^2.3.0
   lints: ^2.0.0
-  json_serializable: ^6.5.4
   build_runner: ^2.3.2
