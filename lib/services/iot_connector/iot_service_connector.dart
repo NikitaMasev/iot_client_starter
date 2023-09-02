@@ -17,7 +17,10 @@ class IotServiceConnector implements Runnable, IotChannelProvider {
   final Duration pingInterval;
 
   late WebSocketChannel _channel;
+  StreamSubscription? _subChannel;
+
   final _controllerProxyWebsocket = StreamController<String>.broadcast();
+  final _broadcastRawChannel = StreamController.broadcast();
   var _connectError = false;
   late final Timer _timerCheckConnection;
 
@@ -38,7 +41,13 @@ class IotServiceConnector implements Runnable, IotChannelProvider {
     );
   }
 
-Future<void> _tryConnect() async {
+  Future<void> _tryConnect() async {
+    if (_subChannel != null) {
+      await _subChannel?.cancel();
+      await _channel.sink.close();
+      _subChannel = null;
+    }
+
     try {
       _channel = IOWebSocketChannel.connect(
         Uri.parse('ws://$ip:$port'),
@@ -49,7 +58,7 @@ Future<void> _tryConnect() async {
       print(e.toString());
     }
 
-    _channel.stream.listen(
+    _subChannel = _broadcastRawChannel.stream.listen(
       (final rawData) {
         _connectError = false;
         if (rawData is String) {
@@ -67,6 +76,8 @@ Future<void> _tryConnect() async {
         }
       },
     );
+
+    await _broadcastRawChannel.addStream(_channel.stream);
   }
 
   @override
