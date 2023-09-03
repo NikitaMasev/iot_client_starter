@@ -7,10 +7,10 @@ import 'package:iot_models/iot_models.dart';
 
 class IotCommunicatorServiceImpl implements IotCommunicatorService {
   IotCommunicatorServiceImpl({
-    required final this.iotChannelProvider,
-    required final this.clientCodec,
-    required final this.iotDevicesCodec,
-    required final this.communicatorSignDecoder,
+    required this.iotChannelProvider,
+    required this.clientCodec,
+    required this.iotDevicesCodec,
+    required this.communicatorSignDecoder,
   }) {
     _runSubscription();
   }

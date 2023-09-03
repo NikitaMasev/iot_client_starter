@@ -3,8 +3,8 @@ import 'package:iot_internal/iot_internal.dart';
 
 class IotServiceCryptoConnector implements IotChannelProvider {
   IotServiceCryptoConnector({
-    required final this.iotChannelProvider,
-    required final this.crypto,
+    required this.iotChannelProvider,
+    required this.crypto,
   });
 
   final IotChannelProvider iotChannelProvider;

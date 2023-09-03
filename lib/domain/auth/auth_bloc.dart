@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:iot_client_starter/data/repositories/user_repository.dart';
+import 'package:iot_client_starter/models/channel_state.dart';
 import 'package:iot_client_starter/services/iot_communicator/iot_communicator_service.dart';
+import 'package:iot_client_starter/services/iot_connector/channel_state_watcher.dart';
 import 'package:iot_models/iot_models.dart';
 
 part 'auth_bloc.freezed.dart';
@@ -34,9 +36,10 @@ abstract class AuthState with _$AuthState {
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
-    required final this.userRepository,
-    required final this.iotCommunicatorService,
-    required final this.name,
+    required this.userRepository,
+    required this.iotCommunicatorService,
+    required this.name,
+    required this.channelStateWatcher,
   }) : super(const InitialAuth()) {
     on<AuthEvent>(
       (final event, final emit) => event.when(
@@ -55,25 +58,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   final UserRepository userRepository;
   final IotCommunicatorService iotCommunicatorService;
+  final ChannelStateWatcher channelStateWatcher;
   final String name;
   StreamSubscription? _subClient;
+  StreamSubscription? _subChannelState;
 
   Future<void> _start(
     final Emitter<AuthState> emit,
   ) async {
+    if (_subClient != null) {
+      return;
+    }
+
     emit(const AuthState.loading());
 
     await _subscribeClient();
-
-    final client = await userRepository.getClient();
-
-    ///register process
-    if (client == null) {
-      iotCommunicatorService.sendClient(Client(name: name));
-    } else {
-      ///auth process
-      iotCommunicatorService.sendClient(client);
-    }
+    await _subscribeChannelState();
   }
 
   Future<void> _innerClientError(
@@ -102,9 +102,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _subscribeClient() async {
-    if (_subClient != null) {
-      return;
-    }
     _subClient = iotCommunicatorService.watchClientModel().listen(
           (final client) => add(
             AuthEvent.innerClientUpdate(client),
@@ -115,9 +112,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
   }
 
+  Future<void> _subscribeChannelState() async {
+    _subChannelState =
+        channelStateWatcher.watchState().listen((final channelState) {
+      switch (channelState) {
+        case ChannelInitial():
+          break;
+        case ChannelLoading():
+          break;
+        case ChannelError():
+          add(AuthEvent.innerClientError(channelState));
+          break;
+        case ChannelReady():
+          userRepository.getClient().then((final client) {
+            ///register process
+            if (client == null) {
+              iotCommunicatorService.sendClient(Client(name: name));
+            } else {
+              ///auth process
+              iotCommunicatorService.sendClient(client);
+            }
+          });
+          break;
+      }
+    });
+  }
+
   @override
   Future<void> close() async {
     await _subClient?.cancel();
+    await _subChannelState?.cancel();
     return super.close();
   }
 }
