@@ -32,7 +32,11 @@ class IotServiceConnector
   @override
   void run() {
     _controllerChannelState.add(ChannelLoading());
-    _runConnection().then((final _) => _runSubSocket());
+    _runConnection().then((final _) => _runSubSocket()).then((final _) {
+      if (!_connectError) {
+        _controllerChannelState.add(ChannelReady());
+      }
+    });
     _launchTimerCheckErrorConnection();
   }
 
