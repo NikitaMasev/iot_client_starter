@@ -115,6 +115,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _subscribeChannelState() async {
     _subChannelState =
         channelStateWatcher.watchState().listen((final channelState) {
+          print('_subscribeChannelState ${channelState.toString()}');
       switch (channelState) {
         case ChannelInitial():
           break;
