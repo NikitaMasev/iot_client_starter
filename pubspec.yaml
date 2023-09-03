@@ -8,7 +8,8 @@ environment:
 
 dependencies:
   #Network
-  web_socket_channel: ^2.4.0
+  #web_socket_channel: ^2.4.0
+  websocket_universal: ^1.1.1
 
   #Architecture
   bloc: ^8.1.0
