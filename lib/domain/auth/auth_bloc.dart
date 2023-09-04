@@ -31,7 +31,7 @@ abstract class AuthState with _$AuthState {
 
   const factory AuthState.success() = SuccessAuth;
 
-  const factory AuthState.errorConnection() = ErrorConnectionAuth;
+  const factory AuthState.error(final Object err) = ErrorAuth;
 }
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -80,7 +80,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final Object err,
     final Emitter<AuthState> emit,
   ) async {
-    emit(const AuthState.errorConnection());
+    emit(AuthState.error(err));
   }
 
   Future<void> _innerClientUpdate(
@@ -115,7 +115,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _subscribeChannelState() async {
     _subChannelState =
         channelStateWatcher.watchState().listen((final channelState) {
-          print('_subscribeChannelState ${channelState.toString()}');
       switch (channelState) {
         case ChannelInitial():
           break;
@@ -134,6 +133,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               iotCommunicatorService.sendClient(client);
             }
           });
+          break;
+        case ChannelDisconnected():
+          add(AuthEvent.innerClientError(channelState));
           break;
       }
     });

@@ -1,6 +1,6 @@
 name: iot_client_starter
 description: A starter package for iot client.
-version: 1.0.0
+version: 1.1.0
 publish_to: none
 
 environment:
@@ -8,8 +8,7 @@ environment:
 
 dependencies:
   #Network
-  #websocket_universal: ^1.1.1
-  web_socket_channel: ^2.4.0
+  websocket_universal: ^1.1.1
 
   #Architecture
   bloc: ^8.1.0

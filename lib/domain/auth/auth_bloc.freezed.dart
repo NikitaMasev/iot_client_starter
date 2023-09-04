@@ -470,7 +470,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() errorConnection,
+    required TResult Function(Object err) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -478,7 +478,7 @@ mixin _$AuthState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? errorConnection,
+    TResult? Function(Object err)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -486,7 +486,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? errorConnection,
+    TResult Function(Object err)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -495,7 +495,7 @@ mixin _$AuthState {
     required TResult Function(InitialAuth value) initial,
     required TResult Function(LoadingAuth value) loading,
     required TResult Function(SuccessAuth value) success,
-    required TResult Function(ErrorConnectionAuth value) errorConnection,
+    required TResult Function(ErrorAuth value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -503,7 +503,7 @@ mixin _$AuthState {
     TResult? Function(InitialAuth value)? initial,
     TResult? Function(LoadingAuth value)? loading,
     TResult? Function(SuccessAuth value)? success,
-    TResult? Function(ErrorConnectionAuth value)? errorConnection,
+    TResult? Function(ErrorAuth value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -511,7 +511,7 @@ mixin _$AuthState {
     TResult Function(InitialAuth value)? initial,
     TResult Function(LoadingAuth value)? loading,
     TResult Function(SuccessAuth value)? success,
-    TResult Function(ErrorConnectionAuth value)? errorConnection,
+    TResult Function(ErrorAuth value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -575,7 +575,7 @@ class _$InitialAuth implements InitialAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() errorConnection,
+    required TResult Function(Object err) error,
   }) {
     return initial();
   }
@@ -586,7 +586,7 @@ class _$InitialAuth implements InitialAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? errorConnection,
+    TResult? Function(Object err)? error,
   }) {
     return initial?.call();
   }
@@ -597,7 +597,7 @@ class _$InitialAuth implements InitialAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? errorConnection,
+    TResult Function(Object err)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -612,7 +612,7 @@ class _$InitialAuth implements InitialAuth {
     required TResult Function(InitialAuth value) initial,
     required TResult Function(LoadingAuth value) loading,
     required TResult Function(SuccessAuth value) success,
-    required TResult Function(ErrorConnectionAuth value) errorConnection,
+    required TResult Function(ErrorAuth value) error,
   }) {
     return initial(this);
   }
@@ -623,7 +623,7 @@ class _$InitialAuth implements InitialAuth {
     TResult? Function(InitialAuth value)? initial,
     TResult? Function(LoadingAuth value)? loading,
     TResult? Function(SuccessAuth value)? success,
-    TResult? Function(ErrorConnectionAuth value)? errorConnection,
+    TResult? Function(ErrorAuth value)? error,
   }) {
     return initial?.call(this);
   }
@@ -634,7 +634,7 @@ class _$InitialAuth implements InitialAuth {
     TResult Function(InitialAuth value)? initial,
     TResult Function(LoadingAuth value)? loading,
     TResult Function(SuccessAuth value)? success,
-    TResult Function(ErrorConnectionAuth value)? errorConnection,
+    TResult Function(ErrorAuth value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -689,7 +689,7 @@ class _$LoadingAuth implements LoadingAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() errorConnection,
+    required TResult Function(Object err) error,
   }) {
     return loading();
   }
@@ -700,7 +700,7 @@ class _$LoadingAuth implements LoadingAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? errorConnection,
+    TResult? Function(Object err)? error,
   }) {
     return loading?.call();
   }
@@ -711,7 +711,7 @@ class _$LoadingAuth implements LoadingAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? errorConnection,
+    TResult Function(Object err)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -726,7 +726,7 @@ class _$LoadingAuth implements LoadingAuth {
     required TResult Function(InitialAuth value) initial,
     required TResult Function(LoadingAuth value) loading,
     required TResult Function(SuccessAuth value) success,
-    required TResult Function(ErrorConnectionAuth value) errorConnection,
+    required TResult Function(ErrorAuth value) error,
   }) {
     return loading(this);
   }
@@ -737,7 +737,7 @@ class _$LoadingAuth implements LoadingAuth {
     TResult? Function(InitialAuth value)? initial,
     TResult? Function(LoadingAuth value)? loading,
     TResult? Function(SuccessAuth value)? success,
-    TResult? Function(ErrorConnectionAuth value)? errorConnection,
+    TResult? Function(ErrorAuth value)? error,
   }) {
     return loading?.call(this);
   }
@@ -748,7 +748,7 @@ class _$LoadingAuth implements LoadingAuth {
     TResult Function(InitialAuth value)? initial,
     TResult Function(LoadingAuth value)? loading,
     TResult Function(SuccessAuth value)? success,
-    TResult Function(ErrorConnectionAuth value)? errorConnection,
+    TResult Function(ErrorAuth value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -803,7 +803,7 @@ class _$SuccessAuth implements SuccessAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() errorConnection,
+    required TResult Function(Object err) error,
   }) {
     return success();
   }
@@ -814,7 +814,7 @@ class _$SuccessAuth implements SuccessAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? errorConnection,
+    TResult? Function(Object err)? error,
   }) {
     return success?.call();
   }
@@ -825,7 +825,7 @@ class _$SuccessAuth implements SuccessAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? errorConnection,
+    TResult Function(Object err)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -840,7 +840,7 @@ class _$SuccessAuth implements SuccessAuth {
     required TResult Function(InitialAuth value) initial,
     required TResult Function(LoadingAuth value) loading,
     required TResult Function(SuccessAuth value) success,
-    required TResult Function(ErrorConnectionAuth value) errorConnection,
+    required TResult Function(ErrorAuth value) error,
   }) {
     return success(this);
   }
@@ -851,7 +851,7 @@ class _$SuccessAuth implements SuccessAuth {
     TResult? Function(InitialAuth value)? initial,
     TResult? Function(LoadingAuth value)? loading,
     TResult? Function(SuccessAuth value)? success,
-    TResult? Function(ErrorConnectionAuth value)? errorConnection,
+    TResult? Function(ErrorAuth value)? error,
   }) {
     return success?.call(this);
   }
@@ -862,7 +862,7 @@ class _$SuccessAuth implements SuccessAuth {
     TResult Function(InitialAuth value)? initial,
     TResult Function(LoadingAuth value)? loading,
     TResult Function(SuccessAuth value)? success,
-    TResult Function(ErrorConnectionAuth value)? errorConnection,
+    TResult Function(ErrorAuth value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -877,39 +877,63 @@ abstract class SuccessAuth implements AuthState {
 }
 
 /// @nodoc
-abstract class _$$ErrorConnectionAuthCopyWith<$Res> {
-  factory _$$ErrorConnectionAuthCopyWith(_$ErrorConnectionAuth value,
-          $Res Function(_$ErrorConnectionAuth) then) =
-      __$$ErrorConnectionAuthCopyWithImpl<$Res>;
+abstract class _$$ErrorAuthCopyWith<$Res> {
+  factory _$$ErrorAuthCopyWith(
+          _$ErrorAuth value, $Res Function(_$ErrorAuth) then) =
+      __$$ErrorAuthCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object err});
 }
 
 /// @nodoc
-class __$$ErrorConnectionAuthCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$ErrorConnectionAuth>
-    implements _$$ErrorConnectionAuthCopyWith<$Res> {
-  __$$ErrorConnectionAuthCopyWithImpl(
-      _$ErrorConnectionAuth _value, $Res Function(_$ErrorConnectionAuth) _then)
+class __$$ErrorAuthCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$ErrorAuth>
+    implements _$$ErrorAuthCopyWith<$Res> {
+  __$$ErrorAuthCopyWithImpl(
+      _$ErrorAuth _value, $Res Function(_$ErrorAuth) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? err = null,
+  }) {
+    return _then(_$ErrorAuth(
+      null == err ? _value.err : err,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$ErrorConnectionAuth implements ErrorConnectionAuth {
-  const _$ErrorConnectionAuth();
+class _$ErrorAuth implements ErrorAuth {
+  const _$ErrorAuth(this.err);
+
+  @override
+  final Object err;
 
   @override
   String toString() {
-    return 'AuthState.errorConnection()';
+    return 'AuthState.error(err: $err)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorConnectionAuth);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorAuth &&
+            const DeepCollectionEquality().equals(other.err, err));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(err));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorAuthCopyWith<_$ErrorAuth> get copyWith =>
+      __$$ErrorAuthCopyWithImpl<_$ErrorAuth>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -917,9 +941,9 @@ class _$ErrorConnectionAuth implements ErrorConnectionAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function() errorConnection,
+    required TResult Function(Object err) error,
   }) {
-    return errorConnection();
+    return error(err);
   }
 
   @override
@@ -928,9 +952,9 @@ class _$ErrorConnectionAuth implements ErrorConnectionAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function()? errorConnection,
+    TResult? Function(Object err)? error,
   }) {
-    return errorConnection?.call();
+    return error?.call(err);
   }
 
   @override
@@ -939,11 +963,11 @@ class _$ErrorConnectionAuth implements ErrorConnectionAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function()? errorConnection,
+    TResult Function(Object err)? error,
     required TResult orElse(),
   }) {
-    if (errorConnection != null) {
-      return errorConnection();
+    if (error != null) {
+      return error(err);
     }
     return orElse();
   }
@@ -954,9 +978,9 @@ class _$ErrorConnectionAuth implements ErrorConnectionAuth {
     required TResult Function(InitialAuth value) initial,
     required TResult Function(LoadingAuth value) loading,
     required TResult Function(SuccessAuth value) success,
-    required TResult Function(ErrorConnectionAuth value) errorConnection,
+    required TResult Function(ErrorAuth value) error,
   }) {
-    return errorConnection(this);
+    return error(this);
   }
 
   @override
@@ -965,9 +989,9 @@ class _$ErrorConnectionAuth implements ErrorConnectionAuth {
     TResult? Function(InitialAuth value)? initial,
     TResult? Function(LoadingAuth value)? loading,
     TResult? Function(SuccessAuth value)? success,
-    TResult? Function(ErrorConnectionAuth value)? errorConnection,
+    TResult? Function(ErrorAuth value)? error,
   }) {
-    return errorConnection?.call(this);
+    return error?.call(this);
   }
 
   @override
@@ -976,16 +1000,21 @@ class _$ErrorConnectionAuth implements ErrorConnectionAuth {
     TResult Function(InitialAuth value)? initial,
     TResult Function(LoadingAuth value)? loading,
     TResult Function(SuccessAuth value)? success,
-    TResult Function(ErrorConnectionAuth value)? errorConnection,
+    TResult Function(ErrorAuth value)? error,
     required TResult orElse(),
   }) {
-    if (errorConnection != null) {
-      return errorConnection(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }
 }
 
-abstract class ErrorConnectionAuth implements AuthState {
-  const factory ErrorConnectionAuth() = _$ErrorConnectionAuth;
+abstract class ErrorAuth implements AuthState {
+  const factory ErrorAuth(final Object err) = _$ErrorAuth;
+
+  Object get err;
+  @JsonKey(ignore: true)
+  _$$ErrorAuthCopyWith<_$ErrorAuth> get copyWith =>
+      throw _privateConstructorUsedError;
 }
