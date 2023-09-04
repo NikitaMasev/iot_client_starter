@@ -12,7 +12,7 @@ class IotServiceConnector
   IotServiceConnector({
     required this.ip,
     required this.port,
-    this.pingInterval = const Duration(seconds: 10),
+    this.pingInterval = const Duration(seconds: 5),
   });
 
   final String ip;
@@ -26,72 +26,90 @@ class IotServiceConnector
   final _controllerChannelState = StreamController<ChannelState>.broadcast()
     ..add(ChannelInitial());
 
-  var _connectError = false;
+  var _reconnectionFlow = false;
   late final Timer _timerCheckConnection;
 
   @override
   void run() {
     _controllerChannelState.add(ChannelLoading());
-    _runConnection().then((final _) => _runSubSocket()).then((final _) {
-      if (!_connectError) {
+
+    _runConnection().then((final connected) async {
+      await _runSubSocket();
+
+      if (connected) {
         _controllerChannelState.add(ChannelReady());
+      } else {
+        //_controllerChannelState.add(ChannelError(error: 'Error connection'));
+        _reconnectionFlow = true;
       }
     });
+
     _launchTimerCheckErrorConnection();
   }
 
   void _launchTimerCheckErrorConnection() {
+    var connected = true;
     _timerCheckConnection = Timer.periodic(
       pingInterval,
-      (final _) async {
-        final errorBefore = _connectError;
-        await _runConnection();
-        final errorAfter = _connectError;
+          (final _) async {
+        print('_launchTimerCheckErrorConnection');
+        print(_channel.closeCode);
+        print(_channel.closeReason);
+        print('_reconnectionFlow $_reconnectionFlow');
 
-        print('errorBefore $errorBefore');
-        print('errorAfter $errorAfter');
-
-        if (errorAfter) {
-          _controllerChannelState.add(ChannelError(error: 'Error connection'));
+        if (_channel.closeCode != null) {
+          _reconnectionFlow = true;
         }
 
-        if (errorBefore && !errorAfter) {
-          _controllerChannelState.add(ChannelReady());
+        if (_reconnectionFlow) {
+          print('_launchTimerCheckErrorConnection IF _reconnectionFlow');
+          final connectedRun =  await _runConnection();
+
+          print('connected $connected');
+          print('connectedRun $connectedRun');
+
+          if (!connectedRun) {
+            _controllerChannelState.add(ChannelError(error: 'Error connection'));
+          }
+
+          if (!connected && connectedRun) {
+            _reconnectionFlow = false;
+            _controllerChannelState.add(ChannelReady());
+          }
+
+          connected = connectedRun;
         }
       },
     );
   }
 
-  Future<void> _runConnection() async {
-    print('_runConnection');
-    var exceptionConnection = false;
+  Future<bool> _runConnection() async {
+    var connected = true;
     try {
+      ///don't use pingInterval, cause backend(with shelf_io) drop connection
+      ///after successfull reconnection
       _channel = IOWebSocketChannel.connect(
         Uri.parse('ws://$ip:$port'),
-        pingInterval: pingInterval,
+        //pingInterval: const Duration(seconds: 2),
       );
       await _channel.ready;
     } catch (e) {
-      exceptionConnection = true;
+      connected = false;
       print('IN TRY CATCH ${e.toString()}');
-      //_controllerProxyWebsocket.addError(e as Object);
     }
-    print('exceptionConnection $exceptionConnection');
-    _connectError = exceptionConnection;
+    return connected;
   }
 
   Future<void> _runSubSocket() async {
     print('_runSubSocket');
     _subChannel = _channel.stream.listen(
-      (final rawData) {
-        _connectError = false;
+          (final rawData) {
         if (rawData is String) {
           _controllerProxyWebsocket.add(rawData);
         }
       },
       onError: (final err) {
         print('IN _runSubSocket ${err.toString()}');
-        _connectError = true;
         if (err != null) {
           _controllerProxyWebsocket.addError(err as Object);
         } else {
