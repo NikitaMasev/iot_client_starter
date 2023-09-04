@@ -38,7 +38,7 @@ class IotServiceConnector
       connectionOptions: connectionOptions,
     );
 
-    _subChannelState = _channel.socketHandlerStateStream.listen(
+    _subChannelState = _channel.socketStateStream.listen(
       (final stateChannel) {
         print('INCOMING STATE ${stateChannel.message}');
         switch (stateChannel.status) {
