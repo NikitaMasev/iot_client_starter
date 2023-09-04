@@ -40,7 +40,7 @@ class IotServiceConnector
 
     _subChannelState = _channel.socketHandlerStateStream.listen(
       (final stateChannel) {
-        print('INCOMING STATE $stateChannel');
+        print('INCOMING STATE ${stateChannel.message}');
         switch (stateChannel.status) {
           case SocketStatus.disconnected:
             _controllerChannelState.add(ChannelDisconnected());
@@ -69,6 +69,7 @@ class IotServiceConnector
         err.toString(),
       ),
     );
+    _channel.connect();
   }
 
   @override
