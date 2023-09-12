@@ -23,6 +23,7 @@ class IotServiceConnector
   late final IWebSocketHandler<String, String> _channel;
   late final StreamSubscription _subChannelState;
   late final StreamSubscription _subChannel;
+  ChannelState _currentChannelState = ChannelInitial();
 
   final _controllerProxyWebsocket = StreamController<String>.broadcast();
   final _controllerChannelState = StreamController<ChannelState>.broadcast()
@@ -43,19 +44,23 @@ class IotServiceConnector
         print('INCOMING STATE ${stateChannel.message}');
         switch (stateChannel.status) {
           case SocketStatus.disconnected:
+            _currentChannelState = ChannelDisconnected();
             _controllerChannelState.add(ChannelDisconnected());
             break;
           case SocketStatus.connecting:
+            _currentChannelState = ChannelLoading();
             _controllerChannelState.add(ChannelLoading());
             break;
           case SocketStatus.connected:
+            _currentChannelState = ChannelReady();
             _controllerChannelState.add(ChannelReady());
             break;
         }
       },
-      onError: (final err) => _controllerChannelState.add(
-        ChannelError(error: err.toString()),
-      ),
+      onError: (final err) {
+        _currentChannelState = ChannelError(error: err.toString());
+        _controllerChannelState.add(_currentChannelState);
+      },
     );
 
     _subChannel = _channel.incomingMessagesStream.listen(
@@ -80,4 +85,7 @@ class IotServiceConnector
 
   @override
   Stream<ChannelState> watchState() => _controllerChannelState.stream;
+
+  @override
+  Future<ChannelState> lastState() => Future.value(_currentChannelState);
 }
