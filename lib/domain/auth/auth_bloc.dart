@@ -74,6 +74,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     await _subscribeClient();
     await _subscribeChannelState();
+
+    final lastChannelState = await channelStateWatcher.lastState();
+
+    if (lastChannelState is ChannelReady) {
+      await _authOrRegister();
+    }
   }
 
   Future<void> _innerClientError(
@@ -124,21 +130,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           add(AuthEvent.innerClientError(channelState));
           break;
         case ChannelReady():
-          userRepository.getClient().then((final client) {
-            ///register process
-            if (client == null) {
-              iotCommunicatorService.sendClient(Client(name: name));
-            } else {
-              ///auth process
-              iotCommunicatorService.sendClient(client);
-            }
-          });
+          _authOrRegister();
           break;
         case ChannelDisconnected():
           add(AuthEvent.innerClientError(channelState));
           break;
       }
     });
+  }
+
+  Future<void> _authOrRegister() async {
+    final client = await userRepository.getClient();
+
+    ///register process
+    if (client == null) {
+      iotCommunicatorService.sendClient(Client(name: name));
+    } else {
+      ///auth process
+      iotCommunicatorService.sendClient(client);
+    }
   }
 
   @override
