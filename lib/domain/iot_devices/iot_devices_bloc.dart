@@ -38,7 +38,7 @@ abstract class IotDevicesState with _$IotDevicesState {
 }
 
 class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
-  IotDevicesBloc(this.iotCommunicatorService) : super(const Initial()) {
+  IotDevicesBloc(this._iotCommunicatorService) : super(const Initial()) {
     on<IotDevicesEvent>(
       (final event, final emit) => event.when(
         start: () => _start(emit),
@@ -59,7 +59,7 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
     );
   }
 
-  final IotCommunicatorService iotCommunicatorService;
+  final IotCommunicatorService _iotCommunicatorService;
   late final StreamSubscription _subIotDevices;
 
   Future<void> _start(
@@ -67,7 +67,7 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
   ) async {
     emit(const IotDevicesState.loading());
 
-    _subIotDevices = iotCommunicatorService.watchIotDevicesModel().listen(
+    _subIotDevices = _iotCommunicatorService.watchIotDevicesModel().listen(
           (final iotDevices) => add(
             IotDevicesEvent.innerIotDevicesUpdate(iotDevices),
           ),
@@ -96,7 +96,7 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
     final ControlData controlData,
     final Emitter<IotDevicesState> emit,
   ) async {
-    iotCommunicatorService.sendClient(Client(controlData: controlData));
+    _iotCommunicatorService.sendClient(Client(controlData: controlData));
   }
 
   @override
