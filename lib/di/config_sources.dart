@@ -26,7 +26,8 @@ Future<UserRepository> configUserRepo() async {
   return UserRepositoryImpl(sharedPersistent);
 }
 
-Future<(IotChannelProvider, ChannelStateWatcher)> configChannelProvider({
+Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
+    configChannelProvider({
   required final String ipClients,
   required final String portClients,
   required final Crypto cryptoClients,
@@ -34,12 +35,13 @@ Future<(IotChannelProvider, ChannelStateWatcher)> configChannelProvider({
   final iotServiceConnector = await _configIotServiceConnector(
     ip: ipClients,
     port: portClients,
-  )..run();
+  );
   return (
     IotServiceCryptoConnector(
       iotChannelProvider: iotServiceConnector,
       crypto: cryptoClients,
     ),
+    iotServiceConnector,
     iotServiceConnector
   );
 }
@@ -54,8 +56,10 @@ Future<IotServiceConnector> _configIotServiceConnector({
       connectionOptions: const SocketConnectionOptions(
         pingIntervalMs: 5000,
         timeoutConnectionMs: 4000,
+
         /// see ping/pong messages in [logEventStream] stream
         skipPingMessages: false,
+
         /// Set this attribute to `true` if do not need any ping/pong
         /// messages and ping measurement. Default is `false`
         pingRestrictionForce: false,
