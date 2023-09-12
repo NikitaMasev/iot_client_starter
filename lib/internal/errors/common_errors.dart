@@ -1,5 +1,5 @@
 sealed class CommonError {
-  final String err = 'Неизвестная ошибка.';
+  final String err = '';
   Object? stackTrace;
 }
 
@@ -17,4 +17,12 @@ class ErrorConnectionInterrupted implements CommonError {
 
   @override
   Object? stackTrace;
+}
+
+class ErrorUnknown implements CommonError {
+  @override
+  Object? stackTrace;
+
+  @override
+  String get err => 'Неизвестная ошибка.';
 }

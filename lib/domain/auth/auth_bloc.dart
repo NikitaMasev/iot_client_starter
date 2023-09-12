@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:iot_client_starter/data/repositories/user_repository.dart';
+import 'package:iot_client_starter/internal/errors/common_errors.dart';
 import 'package:iot_client_starter/models/channel_state.dart';
 import 'package:iot_client_starter/services/iot_communicator/iot_communicator_service.dart';
 import 'package:iot_client_starter/services/iot_connector/channel_state_watcher.dart';
@@ -19,7 +20,7 @@ abstract class AuthEvent with _$AuthEvent {
   ) = InnerClientUpdate;
 
   const factory AuthEvent.innerClientError(
-    final Object err,
+    final CommonError err,
   ) = InnerClientError;
 }
 
@@ -31,7 +32,7 @@ abstract class AuthState with _$AuthState {
 
   const factory AuthState.success() = SuccessAuth;
 
-  const factory AuthState.error(final Object err) = ErrorAuth;
+  const factory AuthState.error(final CommonError err) = ErrorAuth;
 }
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -83,7 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _innerClientError(
-    final Object err,
+    final CommonError err,
     final Emitter<AuthState> emit,
   ) async {
     emit(AuthState.error(err));
@@ -113,7 +114,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             AuthEvent.innerClientUpdate(client),
           ),
           onError: (final err) => add(
-            AuthEvent.innerClientError(err as Object),
+            AuthEvent.innerClientError(ErrorUnknown()..stackTrace = err),
           ),
         );
   }
@@ -127,13 +128,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         case ChannelLoading():
           break;
         case ChannelError():
-          add(AuthEvent.innerClientError(channelState));
+          add(
+            AuthEvent.innerClientError(
+              ErrorConnectionInterrupted()..stackTrace = channelState.error,
+            ),
+          );
           break;
         case ChannelReady():
           _authOrRegister();
           break;
         case ChannelDisconnected():
-          add(AuthEvent.innerClientError(channelState));
+          add(AuthEvent.innerClientError(ErrorConnecting()));
           break;
       }
     });

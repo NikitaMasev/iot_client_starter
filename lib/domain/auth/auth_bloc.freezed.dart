@@ -20,21 +20,21 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function(Client client) innerClientUpdate,
-    required TResult Function(Object err) innerClientError,
+    required TResult Function(CommonError err) innerClientError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function(Client client)? innerClientUpdate,
-    TResult? Function(Object err)? innerClientError,
+    TResult? Function(CommonError err)? innerClientError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function(Client client)? innerClientUpdate,
-    TResult Function(Object err)? innerClientError,
+    TResult Function(CommonError err)? innerClientError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$StartAuth implements StartAuth {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function(Client client) innerClientUpdate,
-    required TResult Function(Object err) innerClientError,
+    required TResult Function(CommonError err) innerClientError,
   }) {
     return start();
   }
@@ -129,7 +129,7 @@ class _$StartAuth implements StartAuth {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function(Client client)? innerClientUpdate,
-    TResult? Function(Object err)? innerClientError,
+    TResult? Function(CommonError err)? innerClientError,
   }) {
     return start?.call();
   }
@@ -139,7 +139,7 @@ class _$StartAuth implements StartAuth {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function(Client client)? innerClientUpdate,
-    TResult Function(Object err)? innerClientError,
+    TResult Function(CommonError err)? innerClientError,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -253,7 +253,7 @@ class _$InnerClientUpdate implements InnerClientUpdate {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function(Client client) innerClientUpdate,
-    required TResult Function(Object err) innerClientError,
+    required TResult Function(CommonError err) innerClientError,
   }) {
     return innerClientUpdate(client);
   }
@@ -263,7 +263,7 @@ class _$InnerClientUpdate implements InnerClientUpdate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function(Client client)? innerClientUpdate,
-    TResult? Function(Object err)? innerClientError,
+    TResult? Function(CommonError err)? innerClientError,
   }) {
     return innerClientUpdate?.call(client);
   }
@@ -273,7 +273,7 @@ class _$InnerClientUpdate implements InnerClientUpdate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function(Client client)? innerClientUpdate,
-    TResult Function(Object err)? innerClientError,
+    TResult Function(CommonError err)? innerClientError,
     required TResult orElse(),
   }) {
     if (innerClientUpdate != null) {
@@ -332,7 +332,7 @@ abstract class _$$InnerClientErrorCopyWith<$Res> {
           _$InnerClientError value, $Res Function(_$InnerClientError) then) =
       __$$InnerClientErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({Object err});
+  $Res call({CommonError err});
 }
 
 /// @nodoc
@@ -349,7 +349,10 @@ class __$$InnerClientErrorCopyWithImpl<$Res>
     Object? err = null,
   }) {
     return _then(_$InnerClientError(
-      null == err ? _value.err : err,
+      null == err
+          ? _value.err
+          : err // ignore: cast_nullable_to_non_nullable
+              as CommonError,
     ));
   }
 }
@@ -360,7 +363,7 @@ class _$InnerClientError implements InnerClientError {
   const _$InnerClientError(this.err);
 
   @override
-  final Object err;
+  final CommonError err;
 
   @override
   String toString() {
@@ -372,12 +375,11 @@ class _$InnerClientError implements InnerClientError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InnerClientError &&
-            const DeepCollectionEquality().equals(other.err, err));
+            (identical(other.err, err) || other.err == err));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(err));
+  int get hashCode => Object.hash(runtimeType, err);
 
   @JsonKey(ignore: true)
   @override
@@ -390,7 +392,7 @@ class _$InnerClientError implements InnerClientError {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function(Client client) innerClientUpdate,
-    required TResult Function(Object err) innerClientError,
+    required TResult Function(CommonError err) innerClientError,
   }) {
     return innerClientError(err);
   }
@@ -400,7 +402,7 @@ class _$InnerClientError implements InnerClientError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function(Client client)? innerClientUpdate,
-    TResult? Function(Object err)? innerClientError,
+    TResult? Function(CommonError err)? innerClientError,
   }) {
     return innerClientError?.call(err);
   }
@@ -410,7 +412,7 @@ class _$InnerClientError implements InnerClientError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function(Client client)? innerClientUpdate,
-    TResult Function(Object err)? innerClientError,
+    TResult Function(CommonError err)? innerClientError,
     required TResult orElse(),
   }) {
     if (innerClientError != null) {
@@ -455,9 +457,9 @@ class _$InnerClientError implements InnerClientError {
 }
 
 abstract class InnerClientError implements AuthEvent {
-  const factory InnerClientError(final Object err) = _$InnerClientError;
+  const factory InnerClientError(final CommonError err) = _$InnerClientError;
 
-  Object get err;
+  CommonError get err;
   @JsonKey(ignore: true)
   _$$InnerClientErrorCopyWith<_$InnerClientError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -470,7 +472,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(Object err) error,
+    required TResult Function(CommonError err) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -478,7 +480,7 @@ mixin _$AuthState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(Object err)? error,
+    TResult? Function(CommonError err)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -486,7 +488,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(Object err)? error,
+    TResult Function(CommonError err)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -575,7 +577,7 @@ class _$InitialAuth implements InitialAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(Object err) error,
+    required TResult Function(CommonError err) error,
   }) {
     return initial();
   }
@@ -586,7 +588,7 @@ class _$InitialAuth implements InitialAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(Object err)? error,
+    TResult? Function(CommonError err)? error,
   }) {
     return initial?.call();
   }
@@ -597,7 +599,7 @@ class _$InitialAuth implements InitialAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(Object err)? error,
+    TResult Function(CommonError err)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -689,7 +691,7 @@ class _$LoadingAuth implements LoadingAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(Object err) error,
+    required TResult Function(CommonError err) error,
   }) {
     return loading();
   }
@@ -700,7 +702,7 @@ class _$LoadingAuth implements LoadingAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(Object err)? error,
+    TResult? Function(CommonError err)? error,
   }) {
     return loading?.call();
   }
@@ -711,7 +713,7 @@ class _$LoadingAuth implements LoadingAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(Object err)? error,
+    TResult Function(CommonError err)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -803,7 +805,7 @@ class _$SuccessAuth implements SuccessAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(Object err) error,
+    required TResult Function(CommonError err) error,
   }) {
     return success();
   }
@@ -814,7 +816,7 @@ class _$SuccessAuth implements SuccessAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(Object err)? error,
+    TResult? Function(CommonError err)? error,
   }) {
     return success?.call();
   }
@@ -825,7 +827,7 @@ class _$SuccessAuth implements SuccessAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(Object err)? error,
+    TResult Function(CommonError err)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -882,7 +884,7 @@ abstract class _$$ErrorAuthCopyWith<$Res> {
           _$ErrorAuth value, $Res Function(_$ErrorAuth) then) =
       __$$ErrorAuthCopyWithImpl<$Res>;
   @useResult
-  $Res call({Object err});
+  $Res call({CommonError err});
 }
 
 /// @nodoc
@@ -899,7 +901,10 @@ class __$$ErrorAuthCopyWithImpl<$Res>
     Object? err = null,
   }) {
     return _then(_$ErrorAuth(
-      null == err ? _value.err : err,
+      null == err
+          ? _value.err
+          : err // ignore: cast_nullable_to_non_nullable
+              as CommonError,
     ));
   }
 }
@@ -910,7 +915,7 @@ class _$ErrorAuth implements ErrorAuth {
   const _$ErrorAuth(this.err);
 
   @override
-  final Object err;
+  final CommonError err;
 
   @override
   String toString() {
@@ -922,12 +927,11 @@ class _$ErrorAuth implements ErrorAuth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorAuth &&
-            const DeepCollectionEquality().equals(other.err, err));
+            (identical(other.err, err) || other.err == err));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(err));
+  int get hashCode => Object.hash(runtimeType, err);
 
   @JsonKey(ignore: true)
   @override
@@ -941,7 +945,7 @@ class _$ErrorAuth implements ErrorAuth {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(Object err) error,
+    required TResult Function(CommonError err) error,
   }) {
     return error(err);
   }
@@ -952,7 +956,7 @@ class _$ErrorAuth implements ErrorAuth {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(Object err)? error,
+    TResult? Function(CommonError err)? error,
   }) {
     return error?.call(err);
   }
@@ -963,7 +967,7 @@ class _$ErrorAuth implements ErrorAuth {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(Object err)? error,
+    TResult Function(CommonError err)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1011,9 +1015,9 @@ class _$ErrorAuth implements ErrorAuth {
 }
 
 abstract class ErrorAuth implements AuthState {
-  const factory ErrorAuth(final Object err) = _$ErrorAuth;
+  const factory ErrorAuth(final CommonError err) = _$ErrorAuth;
 
-  Object get err;
+  CommonError get err;
   @JsonKey(ignore: true)
   _$$ErrorAuthCopyWith<_$ErrorAuth> get copyWith =>
       throw _privateConstructorUsedError;
