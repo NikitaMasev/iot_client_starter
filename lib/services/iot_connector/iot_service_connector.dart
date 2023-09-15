@@ -13,12 +13,14 @@ class IotServiceConnector
     required this.port,
     required this.connectionOptions,
     required this.textSocketProcessor,
+    this.useLogging = false,
   });
 
   final String ip;
   final String port;
   final SocketConnectionOptions connectionOptions;
   final IMessageProcessor<String, String> textSocketProcessor;
+  final bool useLogging;
 
   late final IWebSocketHandler<String, String> _channel;
   late final StreamSubscription _subChannelState;
@@ -41,7 +43,9 @@ class IotServiceConnector
 
     _subChannelState = _channel.socketStateStream.listen(
       (final stateChannel) {
-        print('INCOMING STATE ${stateChannel.message}');
+        if (useLogging) {
+          print('IotServiceConnector STATE ${stateChannel.message}');
+        }
         switch (stateChannel.status) {
           case SocketStatus.disconnected:
             _currentChannelState = ChannelDisconnected();
@@ -65,7 +69,9 @@ class IotServiceConnector
 
     _subChannel = _channel.incomingMessagesStream.listen(
       (final rawData) {
-        print('INCOMING MSG $rawData');
+        if (useLogging) {
+          print('IotServiceConnector INCOMING MSG $rawData');
+        }
         if (rawData.isNotEmpty) {
           _controllerProxyWebsocket.add(rawData);
         }
