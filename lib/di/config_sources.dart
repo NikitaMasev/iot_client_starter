@@ -49,10 +49,12 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
 Future<IotServiceConnector> _configIotServiceConnector({
   required final String ip,
   required final String port,
+  final bool useLogging = false,
 }) async =>
     IotServiceConnector(
       ip: ip,
       port: port,
+      useLogging: useLogging,
       connectionOptions: const SocketConnectionOptions(
         pingIntervalMs: 5000,
         timeoutConnectionMs: 4000,
