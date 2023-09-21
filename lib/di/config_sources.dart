@@ -36,6 +36,7 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
   final iotServiceConnector = await configIotServiceConnector(
     ip: ipClients,
     port: portClients,
+    useLogging: useLogging,
   );
   return (
     IotServiceCryptoConnector(
