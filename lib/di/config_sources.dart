@@ -31,8 +31,9 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
   required final String ipClients,
   required final String portClients,
   required final Crypto cryptoClients,
+  final bool useLogging = false,
 }) async {
-  final iotServiceConnector = await _configIotServiceConnector(
+  final iotServiceConnector = await configIotServiceConnector(
     ip: ipClients,
     port: portClients,
   );
@@ -46,7 +47,7 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
   );
 }
 
-Future<IotServiceConnector> _configIotServiceConnector({
+Future<IotServiceConnector> configIotServiceConnector({
   required final String ip,
   required final String port,
   final bool useLogging = false,
