@@ -1,6 +1,6 @@
 import 'package:iot_models/iot_models.dart';
 
-abstract class IotCommunicatorService {
+abstract interface class IotCommunicatorService {
   void sendClient(final Client client);
 
   Stream<Client> watchClientModel();

@@ -7,7 +7,12 @@ import 'package:iot_internal/iot_internal.dart';
 import 'package:websocket_universal/websocket_universal.dart';
 
 class IotServiceConnector
-    implements Runnable, IotChannelProvider, ChannelStateWatcher {
+    implements
+        Runnable,
+        Pausable,
+        Resumable,
+        IotChannelProvider,
+        ChannelStateWatcher {
   IotServiceConnector({
     required this.ip,
     required this.port,
@@ -94,4 +99,16 @@ class IotServiceConnector
 
   @override
   Future<ChannelState> lastState() => Future.value(_currentChannelState);
+
+  @override
+  void pause() {
+    _subChannelState.pause();
+    _subChannel.pause();
+  }
+
+  @override
+  void resume() {
+    _subChannelState.resume();
+    _subChannel.resume();
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:iot_client_starter/models/channel_state.dart';
 
-abstract class ChannelStateWatcher {
+abstract interface class ChannelStateWatcher {
   Stream<ChannelState> watchState();
 
   Future<ChannelState> lastState();

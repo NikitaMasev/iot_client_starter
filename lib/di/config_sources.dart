@@ -26,14 +26,14 @@ Future<UserRepository> configUserRepo() async {
   return UserRepositoryImpl(sharedPersistent);
 }
 
-Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
+Future<(IotChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
     configChannelProvider({
   required final String ipClients,
   required final String portClients,
   required final Crypto cryptoClients,
   final bool useLogging = false,
 }) async {
-  final iotServiceConnector = await configIotServiceConnector(
+  final iotServiceConnector = await _configIotServiceConnector(
     ip: ipClients,
     port: portClients,
     useLogging: useLogging,
@@ -44,11 +44,13 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
       crypto: cryptoClients,
     ),
     iotServiceConnector,
-    iotServiceConnector
+    iotServiceConnector,
+    iotServiceConnector,
+    iotServiceConnector,
   );
 }
 
-Future<IotServiceConnector> configIotServiceConnector({
+Future<IotServiceConnector> _configIotServiceConnector({
   required final String ip,
   required final String port,
   final bool useLogging = false,
