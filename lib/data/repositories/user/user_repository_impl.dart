@@ -1,4 +1,4 @@
-import 'package:iot_client_starter/data/repositories/user_repository.dart';
+import 'package:iot_client_starter/data/repositories/user/user_repository.dart';
 import 'package:iot_client_starter/data/sources/shared_persistent.dart';
 import 'package:iot_models/iot_models.dart';
 

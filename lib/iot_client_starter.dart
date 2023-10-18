@@ -1,6 +1,6 @@
 library iot_client_starter;
 
-export 'data/repositories/user_repository.dart';
+export 'data/repositories/user/user_repository.dart';
 export 'data/sources/shared_persistent.dart';
 export 'di/config_domains.dart';
 export 'di/config_sources.dart';

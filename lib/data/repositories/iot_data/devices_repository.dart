@@ -1,5 +1,5 @@
 import 'package:iot_models/iot_models.dart';
 
-abstract interface class IotDevicesRepository {
+abstract interface class DevicesRepository {
   Stream<IotDevicesDataWrapper> watchIotDevicesModel();
 }

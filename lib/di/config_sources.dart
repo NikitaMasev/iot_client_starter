@@ -1,18 +1,21 @@
-import 'package:iot_client_starter/data/repositories/user_repository_impl.dart';
+import 'package:iot_client_starter/data/repositories/user/user_repository_impl.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/crypto_channel/crypto_channel_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/data_channel/channel_data_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/data_channel/iot_channel_data_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/channel_state_watcher.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/raw_data_channel_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/web_socket_channel_provider.dart';
 import 'package:iot_client_starter/data/sources/shared_persistent_impl.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
-import 'package:iot_client_starter/data/sources/iot_provider/data_channel/iot_channel_data_provider.dart';
-import 'package:iot_client_starter/services/iot_connector/web_socket_channel_provider.dart';
-import 'package:iot_client_starter/services/iot_connector/crypto_channel_provider.dart';
 import 'package:iot_internal/iot_internal.dart';
 import 'package:iot_models/iot_models.dart';
 import 'package:websocket_universal/websocket_universal.dart';
 
-Future<IotCommunicator> configCommunicator(
-  final ChannelProvider iotChannelProvider,
+Future<ChannelDataProvider> configChannelData(
+  final RawDataChannelProvider rawDataChannelProvider,
 ) async =>
     IotChannelDataProvider(
-      rawDataChannelProvider: iotChannelProvider,
+      rawDataChannelProvider: rawDataChannelProvider,
       communicatorSignDecoder: const CommunicatorSignDecoderImpl(),
       iotDevicesCodec: const IotDevicesCodecImpl(),
       clientCodec: const ClientCodecImpl(),
@@ -26,20 +29,26 @@ Future<UserRepository> configUserRepo() async {
   return UserRepositoryImpl(sharedPersistent);
 }
 
-Future<(ChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
-    configChannelProvider({
+Future<
+    (
+      RawDataChannelProvider,
+      ChannelStateWatcher,
+      Runnable,
+      Pausable,
+      Resumable,
+    )> configRawDataChannel({
   required final String ipClients,
   required final String portClients,
   required final Crypto cryptoClients,
   final bool useLogging = false,
 }) async {
-  final iotServiceConnector = await _configIotServiceConnector(
+  final iotServiceConnector = await _configWebSocketChannel(
     ip: ipClients,
     port: portClients,
     useLogging: useLogging,
   );
   return (
-    CryptoConnectionProvider(
+    CryptoChannelProvider(
       rawDataChannelProvider: iotServiceConnector,
       crypto: cryptoClients,
     ),
@@ -50,12 +59,12 @@ Future<(ChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
   );
 }
 
-Future<WebSocketConnectionProvider> _configIotServiceConnector({
+Future<WebSocketChannelProvider> _configWebSocketChannel({
   required final String ip,
   required final String port,
   final bool useLogging = false,
 }) async =>
-    WebSocketConnectionProvider(
+    WebSocketChannelProvider(
       ip: ip,
       port: port,
       useLogging: useLogging,
