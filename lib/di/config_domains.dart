@@ -1,7 +1,7 @@
 import 'package:iot_client_starter/iot_client_starter.dart';
 
 Future<AuthBloc> configAuthBloc({
-  required final IotCommunicatorService iotCommunicatorService,
+  required final IotCommunicator iotCommunicatorService,
   required final ChannelStateWatcher channelStateWatcher,
   required final String nameDevice,
 }) async {
@@ -15,6 +15,6 @@ Future<AuthBloc> configAuthBloc({
 }
 
 Future<IotDevicesBloc> configIotDevicesBloc(
-  final IotCommunicatorService iotCommunicatorService,
+  final IotCommunicator iotCommunicatorService,
 ) async =>
     IotDevicesBloc(iotCommunicatorService);

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:iot_client_starter/data/repositories/user_repository.dart';
 import 'package:iot_client_starter/internal/errors/common_errors.dart';
-import 'package:iot_client_starter/models/channel_state.dart';
+import 'package:iot_client_starter/services/websocket_provider/models/channel_state.dart';
 import 'package:iot_client_starter/services/iot_communicator/iot_communicator_service.dart';
 import 'package:iot_client_starter/services/iot_connector/channel_state_watcher.dart';
 import 'package:iot_models/iot_models.dart';
@@ -58,7 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   final UserRepository userRepository;
-  final IotCommunicatorService iotCommunicatorService;
+  final IotCommunicator iotCommunicatorService;
   final ChannelStateWatcher channelStateWatcher;
   final String name;
   StreamSubscription? _subClient;

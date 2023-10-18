@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:iot_client_starter/services/iot_communicator/iot_communicator_service.dart';
-import 'package:iot_client_starter/services/iot_connector/iot_channel_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/data_channel/channel_data_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/raw_data_channel_provider.dart';
 import 'package:iot_internal/iot_internal.dart';
 import 'package:iot_models/iot_models.dart';
 
-class IotCommunicatorServiceImpl implements IotCommunicatorService {
-  IotCommunicatorServiceImpl({
-    required this.iotChannelProvider,
+class IotChannelDataProvider implements ChannelDataProvider {
+  IotChannelDataProvider({
+    required this.rawDataChannelProvider,
     required this.clientCodec,
     required this.iotDevicesCodec,
     required this.communicatorSignDecoder,
@@ -15,7 +15,7 @@ class IotCommunicatorServiceImpl implements IotCommunicatorService {
     _runSubscription();
   }
 
-  final IotChannelProvider iotChannelProvider;
+  final RawDataChannelProvider rawDataChannelProvider;
   final ClientCodec clientCodec;
   final IotDevicesCodec iotDevicesCodec;
   final CommunicatorSignDecoder communicatorSignDecoder;
@@ -27,7 +27,7 @@ class IotCommunicatorServiceImpl implements IotCommunicatorService {
   late final StreamSubscription _subChannel;
 
   void _runSubscription() {
-    _subChannel = iotChannelProvider.watchRawChannel().listen(
+    _subChannel = rawDataChannelProvider.watchModel().listen(
       (final rawData) {
         final signModel = communicatorSignDecoder.decode(rawData);
         switch (signModel) {
@@ -61,15 +61,15 @@ class IotCommunicatorServiceImpl implements IotCommunicatorService {
   }
 
   @override
-  void sendClient(final Client client) {
-    final encodedClient = clientCodec.encode(client);
-    iotChannelProvider.sinkRawData(encodedClient);
+  Stream<IotDevicesDataWrapper> watchIotDevicesModel() =>
+      _controllerIotDevice.stream;
+
+  @override
+  bool send(final Client data) {
+    final encodedClient = clientCodec.encode(data);
+    return rawDataChannelProvider.send(encodedClient);
   }
 
   @override
-  Stream<Client> watchClientModel() => _controllerClient.stream;
-
-  @override
-  Stream<IotDevicesDataWrapper> watchIotDevicesModel() =>
-      _controllerIotDevice.stream;
+  Stream<Client> watchModel() => _controllerClient.stream;
 }

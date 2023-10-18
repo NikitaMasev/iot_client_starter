@@ -9,6 +9,8 @@ environment:
 dependencies:
   #Network
   websocket_universal: ^1.1.1
+  #Utils
+  rxdart: ^0.27.7
 
   iot_internal:
     git:

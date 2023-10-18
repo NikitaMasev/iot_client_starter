@@ -59,7 +59,7 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
     );
   }
 
-  final IotCommunicatorService _iotCommunicatorService;
+  final IotCommunicator _iotCommunicatorService;
   late final StreamSubscription _subIotDevices;
 
   Future<void> _start(

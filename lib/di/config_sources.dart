@@ -1,18 +1,18 @@
 import 'package:iot_client_starter/data/repositories/user_repository_impl.dart';
 import 'package:iot_client_starter/data/sources/shared_persistent_impl.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
-import 'package:iot_client_starter/services/iot_communicator/iot_communicator_service_impl.dart';
-import 'package:iot_client_starter/services/iot_connector/iot_service_connector.dart';
-import 'package:iot_client_starter/services/iot_connector/iot_service_crypto_connector.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/data_channel/iot_channel_data_provider.dart';
+import 'package:iot_client_starter/services/iot_connector/web_socket_channel_provider.dart';
+import 'package:iot_client_starter/services/iot_connector/crypto_channel_provider.dart';
 import 'package:iot_internal/iot_internal.dart';
 import 'package:iot_models/iot_models.dart';
 import 'package:websocket_universal/websocket_universal.dart';
 
-Future<IotCommunicatorService> configCommunicator(
-  final IotChannelProvider iotChannelProvider,
+Future<IotCommunicator> configCommunicator(
+  final ChannelProvider iotChannelProvider,
 ) async =>
-    IotCommunicatorServiceImpl(
-      iotChannelProvider: iotChannelProvider,
+    IotChannelDataProvider(
+      rawDataChannelProvider: iotChannelProvider,
       communicatorSignDecoder: const CommunicatorSignDecoderImpl(),
       iotDevicesCodec: const IotDevicesCodecImpl(),
       clientCodec: const ClientCodecImpl(),
@@ -26,7 +26,7 @@ Future<UserRepository> configUserRepo() async {
   return UserRepositoryImpl(sharedPersistent);
 }
 
-Future<(IotChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
+Future<(ChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
     configChannelProvider({
   required final String ipClients,
   required final String portClients,
@@ -39,8 +39,8 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
     useLogging: useLogging,
   );
   return (
-    IotServiceCryptoConnector(
-      iotChannelProvider: iotServiceConnector,
+    CryptoConnectionProvider(
+      rawDataChannelProvider: iotServiceConnector,
       crypto: cryptoClients,
     ),
     iotServiceConnector,
@@ -50,12 +50,12 @@ Future<(IotChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
   );
 }
 
-Future<IotServiceConnector> _configIotServiceConnector({
+Future<WebSocketConnectionProvider> _configIotServiceConnector({
   required final String ip,
   required final String port,
   final bool useLogging = false,
 }) async =>
-    IotServiceConnector(
+    WebSocketConnectionProvider(
       ip: ip,
       port: port,
       useLogging: useLogging,

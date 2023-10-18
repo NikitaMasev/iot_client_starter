@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:iot_client_starter/models/channel_state.dart';
-import 'package:iot_client_starter/services/iot_connector/channel_state_watcher.dart';
-import 'package:iot_client_starter/services/iot_connector/iot_channel_provider.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/channel_state.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/channel_state_watcher.dart';
+import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/raw_data_channel_provider.dart';
 import 'package:iot_internal/iot_internal.dart';
 import 'package:websocket_universal/websocket_universal.dart';
 
-class IotServiceConnector
+class WebSocketChannelProvider
     implements
         Runnable,
         Pausable,
         Resumable,
-        IotChannelProvider,
+        RawDataChannelProvider,
         ChannelStateWatcher {
-  IotServiceConnector({
+  WebSocketChannelProvider({
     required this.ip,
     required this.port,
     required this.connectionOptions,
@@ -89,10 +89,10 @@ class IotServiceConnector
   }
 
   @override
-  void sinkRawData(final String data) => _channel.sendMessage(data);
+  bool send(final String data) => _channel.sendMessage(data);
 
   @override
-  Stream<String> watchRawChannel() => _controllerProxyWebsocket.stream;
+  Stream<String> watchModel() => _controllerProxyWebsocket.stream;
 
   @override
   Stream<ChannelState> watchState() => _controllerChannelState.stream;
