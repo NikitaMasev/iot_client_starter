@@ -49,7 +49,7 @@ class WebSocketChannelProvider
     _subChannelState = _channel.socketStateStream.listen(
       (final stateChannel) {
         if (useLogging) {
-          print('IotServiceConnector STATE ${stateChannel.message}');
+          print('WebSocketChannelProvider IotServiceConnector STATE ${stateChannel.message}');
         }
         switch (stateChannel.status) {
           case SocketStatus.disconnected:
@@ -104,11 +104,17 @@ class WebSocketChannelProvider
   void pause() {
     _subChannelState.pause();
     _subChannel.pause();
+    if (useLogging) {
+      print('WebSocketChannelProvider pause() $ip');
+    }
   }
 
   @override
   void resume() {
     _subChannelState.resume();
     _subChannel.resume();
+    if (useLogging) {
+      print('WebSocketChannelProvider resume() $ip');
+    }
   }
 }
