@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:iot_client_starter/services/iot_communicator/iot_communicator_service.dart';
+import 'package:iot_client_starter/data/repositories/iot_data/client_repository.dart';
+import 'package:iot_client_starter/data/repositories/iot_data/devices_repository.dart';
 import 'package:iot_models/iot_models.dart';
 
 part 'iot_devices_bloc.freezed.dart';
@@ -38,7 +39,10 @@ abstract class IotDevicesState with _$IotDevicesState {
 }
 
 class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
-  IotDevicesBloc(this._iotCommunicatorService) : super(const Initial()) {
+  IotDevicesBloc({
+    required this.devicesRepository,
+    required this.clientRepository,
+  }) : super(const Initial()) {
     on<IotDevicesEvent>(
       (final event, final emit) => event.when(
         start: () => _start(emit),
@@ -59,7 +63,8 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
     );
   }
 
-  final IotCommunicator _iotCommunicatorService;
+  final DevicesRepository devicesRepository;
+  final ClientRepository clientRepository;
   late final StreamSubscription _subIotDevices;
 
   Future<void> _start(
@@ -67,7 +72,7 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
   ) async {
     emit(const IotDevicesState.loading());
 
-    _subIotDevices = _iotCommunicatorService.watchIotDevicesModel().listen(
+    _subIotDevices = devicesRepository.watchIotDevicesModel().listen(
           (final iotDevices) => add(
             IotDevicesEvent.innerIotDevicesUpdate(iotDevices),
           ),
@@ -96,7 +101,7 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
     final ControlData controlData,
     final Emitter<IotDevicesState> emit,
   ) async {
-    _iotCommunicatorService.sendClient(Client(controlData: controlData));
+    clientRepository.sendClient(Client(controlData: controlData));
   }
 
   @override

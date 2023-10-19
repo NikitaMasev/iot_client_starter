@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:iot_client_starter/data/repositories/iot_data/client_repository.dart';
+import 'package:iot_client_starter/data/repositories/iot_data/iot_state_repository.dart';
+import 'package:iot_client_starter/data/repositories/models/iot_state.dart';
 import 'package:iot_client_starter/data/repositories/user/user_repository.dart';
 import 'package:iot_client_starter/internal/errors/common_errors.dart';
 import 'package:iot_models/iot_models.dart';
@@ -35,9 +38,9 @@ abstract class AuthState with _$AuthState {
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
     required this.userRepository,
-    required this.iotCommunicatorService,
+    required this.iotStateRepository,
+    required this.clientRepository,
     required this.name,
-    required this.channelStateWatcher,
   }) : super(const InitialAuth()) {
     on<AuthEvent>(
       (final event, final emit) => event.when(
@@ -55,11 +58,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   final UserRepository userRepository;
-  final IotCommunicator iotCommunicatorService;
-  final ChannelStateWatcher channelStateWatcher;
+  final IotStateRepository iotStateRepository;
+  final ClientRepository clientRepository;
   final String name;
   StreamSubscription? _subClient;
-  StreamSubscription? _subChannelState;
+  StreamSubscription? _subIotState;
 
   Future<void> _start(
     final Emitter<AuthState> emit,
@@ -73,9 +76,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await _subscribeClient();
     await _subscribeChannelState();
 
-    final lastChannelState = await channelStateWatcher.lastState();
+    final lastChannelState = await iotStateRepository.lastState();
 
-    if (lastChannelState is ChannelReady) {
+    if (lastChannelState is IotReady) {
       await _authOrRegister();
     }
   }
@@ -101,12 +104,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await userRepository.saveClient(fullClient);
 
       ///auth process
-      iotCommunicatorService.sendClient(fullClient);
+      clientRepository.sendClient(fullClient);
     }
   }
 
   Future<void> _subscribeClient() async {
-    _subClient = iotCommunicatorService.watchClientModel().listen(
+    _subClient = clientRepository.watchClientModel().listen(
           (final client) => add(
             AuthEvent.innerClientUpdate(client),
           ),
@@ -117,25 +120,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _subscribeChannelState() async {
-    _subChannelState =
-        channelStateWatcher.watchState().listen((final channelState) {
-      switch (channelState) {
-        case ChannelInitial():
+    _subIotState = iotStateRepository.watchState().listen((final iotState) {
+      switch (iotState) {
+        case IotLoading():
           break;
-        case ChannelLoading():
+        case IotDisconnected():
+          add(AuthEvent.innerClientError(ErrorConnecting()));
           break;
-        case ChannelError():
+        case IotError(error: final iotError):
           add(
             AuthEvent.innerClientError(
-              ErrorConnectionInterrupted()..stackTrace = channelState.error,
+              ErrorConnectionInterrupted()..stackTrace = iotError,
             ),
           );
           break;
-        case ChannelReady():
+        case IotReady():
           _authOrRegister();
-          break;
-        case ChannelDisconnected():
-          add(AuthEvent.innerClientError(ErrorConnecting()));
           break;
       }
     });
@@ -146,17 +146,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     ///register process
     if (client == null) {
-      iotCommunicatorService.sendClient(Client(name: name));
+      clientRepository.sendClient(Client(name: name));
     } else {
       ///auth process
-      iotCommunicatorService.sendClient(client);
+      clientRepository.sendClient(client);
     }
   }
 
   @override
   Future<void> close() async {
     await _subClient?.cancel();
-    await _subChannelState?.cancel();
+    await _subIotState?.cancel();
     return super.close();
   }
 }

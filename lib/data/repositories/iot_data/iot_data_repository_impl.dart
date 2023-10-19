@@ -22,8 +22,8 @@ class IotDataRepositoryImpl
   IotDataRepositoryImpl({
     required this.localChannelDataProvider,
     required this.remoteChannelDataProvider,
-    required this.localStateWatcher,
-    required this.remoteStateWatcher,
+    required this.localChannelStateWatcher,
+    required this.remoteChannelStateWatcher,
     required this.localRunnable,
     required this.remoteRunnable,
     required this.localPausable,
@@ -37,8 +37,8 @@ class IotDataRepositoryImpl
 
   final ChannelDataProvider localChannelDataProvider;
   final ChannelDataProvider remoteChannelDataProvider;
-  final ChannelStateWatcher localStateWatcher;
-  final ChannelStateWatcher remoteStateWatcher;
+  final ChannelStateWatcher localChannelStateWatcher;
+  final ChannelStateWatcher remoteChannelStateWatcher;
   final Runnable localRunnable;
   final Runnable remoteRunnable;
   final Pausable localPausable;
@@ -47,21 +47,19 @@ class IotDataRepositoryImpl
   final Resumable remoteResumable;
   final bool useLogging;
 
-  late final StreamSubscription _subLocalStateWatcher;
-  ChannelState _lastLocalStateWatcher = ChannelInitial();
+  late final StreamSubscription _subLocalChannelState;
+  ChannelState _lastLocalChannelState = ChannelInitial();
 
   @override
   void sendClient(final Client client) {
-    localStateWatcher.lastState().then((final state) {
-      if (useLogging) {
-        print('IotDataRepositoryImpl sendClient $state');
-      }
-      if (state.runtimeType == ChannelReady().runtimeType) {
-        localChannelDataProvider.send(client);
-      } else {
-        remoteChannelDataProvider.send(client);
-      }
-    });
+    if (useLogging) {
+      print('IotDataRepositoryImpl sendClient $_lastLocalChannelState');
+    }
+    if (_lastLocalChannelState is ChannelReady) {
+      localChannelDataProvider.send(client);
+    } else {
+      remoteChannelDataProvider.send(client);
+    }
   }
 
   @override
@@ -78,18 +76,18 @@ class IotDataRepositoryImpl
 
   @override
   Future<IotState> lastState() {
-    if (_lastLocalStateWatcher is ChannelDisconnected ||
-        _lastLocalStateWatcher is ChannelError) {
-      return remoteStateWatcher.lastState().then(_toIotState);
+    if (_lastLocalChannelState is ChannelDisconnected ||
+        _lastLocalChannelState is ChannelError) {
+      return remoteChannelStateWatcher.lastState().then(_toIotState);
     } else {
-      return localStateWatcher.lastState().then(_toIotState);
+      return localChannelStateWatcher.lastState().then(_toIotState);
     }
   }
 
   @override
   Stream<IotState> watchState() => MergeStream<ChannelState>([
-        localStateWatcher.watchState(),
-        remoteStateWatcher.watchState(),
+        localChannelStateWatcher.watchState(),
+        remoteChannelStateWatcher.watchState(),
       ]).map<IotState>(_toIotState);
 
   IotState _toIotState(final ChannelState channelState) =>
@@ -102,9 +100,12 @@ class IotDataRepositoryImpl
       };
 
   void _run() {
-    _subLocalStateWatcher = localStateWatcher.watchState().listen(
+    _subLocalChannelState = localChannelStateWatcher.watchState().listen(
       (final state) {
-        _lastLocalStateWatcher = state;
+        if (useLogging) {
+          print('IotDataRepositoryImpl localStateWatcher $state');
+        }
+        _lastLocalChannelState = state;
         switch (state) {
           case ChannelInitial():
             break;
