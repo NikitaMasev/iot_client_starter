@@ -131,11 +131,16 @@ class IotDataRepositoryImpl
   void pause() {
     remotePausable.pause();
     localPausable.pause();
+    if (useLogging) {
+      print('IotDataRepositoryImpl pause()');
+    }
   }
 
   @override
   void resume() {
-    remoteResumable.resume();
     localResumable.resume();
+    if (useLogging) {
+      print('IotDataRepositoryImpl resume()');
+    }
   }
 }
