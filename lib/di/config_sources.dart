@@ -6,7 +6,6 @@ import 'package:iot_client_starter/data/sources/iot_provider/data_channel/iot_ch
 import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/channel_state_watcher.dart';
 import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/raw_data_channel_provider.dart';
 import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/web_socket_channel_provider.dart';
-import 'package:iot_client_starter/data/sources/shared_persistent.dart';
 import 'package:iot_client_starter/data/sources/shared_persistent_impl.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:iot_internal/iot_internal.dart';
@@ -46,6 +45,7 @@ Future<
     ipClients: ipLocal,
     portClients: portLocal,
     cryptoClients: cryptoClients,
+    useLogging: useLogging,
   );
   final (
     remoteRawDataChannelProvider,
@@ -57,6 +57,7 @@ Future<
     ipClients: ipRemote,
     portClients: portRemote,
     cryptoClients: cryptoClients,
+    useLogging: useLogging,
   );
   final localChannelDataProvider = await _configChannelData(
     localRawDataChannelProvider,
@@ -75,6 +76,7 @@ Future<
     remotePausable: remotePausable,
     localResumable: localResumable,
     remoteResumable: remoteResumable,
+    useLogging: useLogging,
   );
   return (
     iotDataRepo,
