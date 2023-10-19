@@ -236,7 +236,7 @@
         <entry key="iot_internal">
           <value>
             <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-0df0d5ad88e46803df9b993530c51c494d7ee694//lib" />
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-ffcf572556ccf5e6e8bc61f9cee59c9dd747e8a1//lib" />
             </list>
           </value>
         </entry>
@@ -460,7 +460,7 @@
       </option>
     </properties>
     <CLASSES>
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-0df0d5ad88e46803df9b993530c51c494d7ee694//lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-ffcf572556ccf5e6e8bc61f9cee59c9dd747e8a1//lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-9198241b349b2a666d7840b47a2ed31e706e5c4a//lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-65.0.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-6.3.0/lib" />

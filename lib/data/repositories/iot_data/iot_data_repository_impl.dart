@@ -47,8 +47,12 @@ class IotDataRepositoryImpl
   final Resumable remoteResumable;
   final bool useLogging;
 
+  final _localProxyChannelStateController =
+      StreamController<ChannelState>.broadcast();
+
   late final StreamSubscription _subLocalChannelState;
   ChannelState _lastLocalChannelState = ChannelInitial();
+  var _globalPause = false;
 
   @override
   void sendClient(final Client client) {
@@ -86,7 +90,7 @@ class IotDataRepositoryImpl
 
   @override
   Stream<IotState> watchState() => MergeStream<ChannelState>([
-        localChannelStateWatcher.watchState(),
+        _localProxyChannelStateController.stream,
         remoteChannelStateWatcher.watchState(),
       ]).map<IotState>(_toIotState);
 
@@ -102,10 +106,16 @@ class IotDataRepositoryImpl
   void _run() {
     _subLocalChannelState = localChannelStateWatcher.watchState().listen(
       (final state) {
+        _lastLocalChannelState = state;
+
         if (useLogging) {
           print('IotDataRepositoryImpl localStateWatcher $state');
         }
-        _lastLocalChannelState = state;
+
+        if (remotePausable.isPaused()) {
+          _localProxyChannelStateController.add(state);
+        }
+
         switch (state) {
           case ChannelInitial():
             break;
@@ -134,6 +144,7 @@ class IotDataRepositoryImpl
     if (useLogging) {
       print('IotDataRepositoryImpl pause()');
     }
+    _globalPause = true;
   }
 
   @override
@@ -142,5 +153,12 @@ class IotDataRepositoryImpl
     if (useLogging) {
       print('IotDataRepositoryImpl resume()');
     }
+    _globalPause = false;
   }
+
+  @override
+  bool isPaused() => _globalPause;
+
+  @override
+  bool isResumed() => !_globalPause;
 }
