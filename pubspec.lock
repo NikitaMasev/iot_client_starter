@@ -117,10 +117,10 @@ packages:
     dependency: transitive
     description:
       name: built_value
-      sha256: a8de5955205b4d1dbbbc267daddf2178bd737e4bab8987c04a500478c9651e74
+      sha256: "723b4021e903217dfc445ec4cf5b42e27975aece1fc4ebbc1ca6329c2d9fb54e"
       url: "https://pub.dev"
     source: hosted
-    version: "8.6.3"
+    version: "8.7.0"
   checked_yaml:
     dependency: transitive
     description:
@@ -279,10 +279,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "9198241b349b2a666d7840b47a2ed31e706e5c4a"
+      resolved-ref: b666d1f7b89fcbba4b47608cab9c7f0a34e5059d
       url: "https://github.com/NikitaMasev/iot_models.git"
     source: git
-    version: "1.1.11"
+    version: "1.1.12"
   js:
     dependency: transitive
     description:

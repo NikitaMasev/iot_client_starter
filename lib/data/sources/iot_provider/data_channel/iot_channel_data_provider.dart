@@ -47,6 +47,8 @@ class IotChannelDataProvider implements ChannelDataProvider {
             break;
           case Sign.ledData:
             break;
+          case Sign.ledCctData:
+            break;
         }
       },
       onError: (final err) {

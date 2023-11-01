@@ -103,7 +103,7 @@
         <entry key="built_value">
           <value>
             <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.6.3/lib" />
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.7.0/lib" />
             </list>
           </value>
         </entry>
@@ -243,7 +243,7 @@
         <entry key="iot_models">
           <value>
             <list>
-              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-9198241b349b2a666d7840b47a2ed31e706e5c4a//lib" />
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-b666d1f7b89fcbba4b47608cab9c7f0a34e5059d//lib" />
             </list>
           </value>
         </entry>
@@ -461,7 +461,7 @@
     </properties>
     <CLASSES>
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_internal-ffcf572556ccf5e6e8bc61f9cee59c9dd747e8a1//lib" />
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-9198241b349b2a666d7840b47a2ed31e706e5c4a//lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/git/iot_models-b666d1f7b89fcbba4b47608cab9c7f0a34e5059d//lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-65.0.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-6.3.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.4.2/lib" />
@@ -476,7 +476,7 @@
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner-2.4.6/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner_core-7.2.11/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/built_collection-5.1.1/lib" />
-      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.6.3/lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.7.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/checked_yaml-2.0.3/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.1/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/code_builder-4.7.0/lib" />
