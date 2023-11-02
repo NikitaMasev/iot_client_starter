@@ -279,10 +279,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b666d1f7b89fcbba4b47608cab9c7f0a34e5059d
+      resolved-ref: "23bc339d700f4ff80f7feabd8275348ff0ed70ea"
       url: "https://github.com/NikitaMasev/iot_models.git"
     source: git
-    version: "1.1.12"
+    version: "1.1.15"
   js:
     dependency: transitive
     description:
