@@ -91,23 +91,25 @@ class _$IotDevicesEventCopyWithImpl<$Res, $Val extends IotDevicesEvent>
 }
 
 /// @nodoc
-abstract class _$$StartCopyWith<$Res> {
-  factory _$$StartCopyWith(_$Start value, $Res Function(_$Start) then) =
-      __$$StartCopyWithImpl<$Res>;
+abstract class _$$StartImplCopyWith<$Res> {
+  factory _$$StartImplCopyWith(
+          _$StartImpl value, $Res Function(_$StartImpl) then) =
+      __$$StartImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartCopyWithImpl<$Res>
-    extends _$IotDevicesEventCopyWithImpl<$Res, _$Start>
-    implements _$$StartCopyWith<$Res> {
-  __$$StartCopyWithImpl(_$Start _value, $Res Function(_$Start) _then)
+class __$$StartImplCopyWithImpl<$Res>
+    extends _$IotDevicesEventCopyWithImpl<$Res, _$StartImpl>
+    implements _$$StartImplCopyWith<$Res> {
+  __$$StartImplCopyWithImpl(
+      _$StartImpl _value, $Res Function(_$StartImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Start implements Start {
-  const _$Start();
+class _$StartImpl implements Start {
+  const _$StartImpl();
 
   @override
   String toString() {
@@ -117,7 +119,7 @@ class _$Start implements Start {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Start);
+        (other.runtimeType == runtimeType && other is _$StartImpl);
   }
 
   @override
@@ -203,24 +205,24 @@ class _$Start implements Start {
 }
 
 abstract class Start implements IotDevicesEvent {
-  const factory Start() = _$Start;
+  const factory Start() = _$StartImpl;
 }
 
 /// @nodoc
-abstract class _$$ControlDeviceCopyWith<$Res> {
-  factory _$$ControlDeviceCopyWith(
-          _$ControlDevice value, $Res Function(_$ControlDevice) then) =
-      __$$ControlDeviceCopyWithImpl<$Res>;
+abstract class _$$ControlDeviceImplCopyWith<$Res> {
+  factory _$$ControlDeviceImplCopyWith(
+          _$ControlDeviceImpl value, $Res Function(_$ControlDeviceImpl) then) =
+      __$$ControlDeviceImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ControlData controlData});
 }
 
 /// @nodoc
-class __$$ControlDeviceCopyWithImpl<$Res>
-    extends _$IotDevicesEventCopyWithImpl<$Res, _$ControlDevice>
-    implements _$$ControlDeviceCopyWith<$Res> {
-  __$$ControlDeviceCopyWithImpl(
-      _$ControlDevice _value, $Res Function(_$ControlDevice) _then)
+class __$$ControlDeviceImplCopyWithImpl<$Res>
+    extends _$IotDevicesEventCopyWithImpl<$Res, _$ControlDeviceImpl>
+    implements _$$ControlDeviceImplCopyWith<$Res> {
+  __$$ControlDeviceImplCopyWithImpl(
+      _$ControlDeviceImpl _value, $Res Function(_$ControlDeviceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -228,7 +230,7 @@ class __$$ControlDeviceCopyWithImpl<$Res>
   $Res call({
     Object? controlData = null,
   }) {
-    return _then(_$ControlDevice(
+    return _then(_$ControlDeviceImpl(
       null == controlData
           ? _value.controlData
           : controlData // ignore: cast_nullable_to_non_nullable
@@ -239,8 +241,8 @@ class __$$ControlDeviceCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ControlDevice implements ControlDevice {
-  const _$ControlDevice(this.controlData);
+class _$ControlDeviceImpl implements ControlDevice {
+  const _$ControlDeviceImpl(this.controlData);
 
   @override
   final ControlData controlData;
@@ -254,7 +256,7 @@ class _$ControlDevice implements ControlDevice {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ControlDevice &&
+            other is _$ControlDeviceImpl &&
             (identical(other.controlData, controlData) ||
                 other.controlData == controlData));
   }
@@ -265,8 +267,8 @@ class _$ControlDevice implements ControlDevice {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ControlDeviceCopyWith<_$ControlDevice> get copyWith =>
-      __$$ControlDeviceCopyWithImpl<_$ControlDevice>(this, _$identity);
+  _$$ControlDeviceImplCopyWith<_$ControlDeviceImpl> get copyWith =>
+      __$$ControlDeviceImplCopyWithImpl<_$ControlDeviceImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -348,29 +350,31 @@ class _$ControlDevice implements ControlDevice {
 }
 
 abstract class ControlDevice implements IotDevicesEvent {
-  const factory ControlDevice(final ControlData controlData) = _$ControlDevice;
+  const factory ControlDevice(final ControlData controlData) =
+      _$ControlDeviceImpl;
 
   ControlData get controlData;
   @JsonKey(ignore: true)
-  _$$ControlDeviceCopyWith<_$ControlDevice> get copyWith =>
+  _$$ControlDeviceImplCopyWith<_$ControlDeviceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$InnerIotDevicesUpdateCopyWith<$Res> {
-  factory _$$InnerIotDevicesUpdateCopyWith(_$InnerIotDevicesUpdate value,
-          $Res Function(_$InnerIotDevicesUpdate) then) =
-      __$$InnerIotDevicesUpdateCopyWithImpl<$Res>;
+abstract class _$$InnerIotDevicesUpdateImplCopyWith<$Res> {
+  factory _$$InnerIotDevicesUpdateImplCopyWith(
+          _$InnerIotDevicesUpdateImpl value,
+          $Res Function(_$InnerIotDevicesUpdateImpl) then) =
+      __$$InnerIotDevicesUpdateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({IotDevicesDataWrapper iotDevicesDataWrapper});
 }
 
 /// @nodoc
-class __$$InnerIotDevicesUpdateCopyWithImpl<$Res>
-    extends _$IotDevicesEventCopyWithImpl<$Res, _$InnerIotDevicesUpdate>
-    implements _$$InnerIotDevicesUpdateCopyWith<$Res> {
-  __$$InnerIotDevicesUpdateCopyWithImpl(_$InnerIotDevicesUpdate _value,
-      $Res Function(_$InnerIotDevicesUpdate) _then)
+class __$$InnerIotDevicesUpdateImplCopyWithImpl<$Res>
+    extends _$IotDevicesEventCopyWithImpl<$Res, _$InnerIotDevicesUpdateImpl>
+    implements _$$InnerIotDevicesUpdateImplCopyWith<$Res> {
+  __$$InnerIotDevicesUpdateImplCopyWithImpl(_$InnerIotDevicesUpdateImpl _value,
+      $Res Function(_$InnerIotDevicesUpdateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -378,7 +382,7 @@ class __$$InnerIotDevicesUpdateCopyWithImpl<$Res>
   $Res call({
     Object? iotDevicesDataWrapper = null,
   }) {
-    return _then(_$InnerIotDevicesUpdate(
+    return _then(_$InnerIotDevicesUpdateImpl(
       null == iotDevicesDataWrapper
           ? _value.iotDevicesDataWrapper
           : iotDevicesDataWrapper // ignore: cast_nullable_to_non_nullable
@@ -389,8 +393,8 @@ class __$$InnerIotDevicesUpdateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InnerIotDevicesUpdate implements InnerIotDevicesUpdate {
-  const _$InnerIotDevicesUpdate(this.iotDevicesDataWrapper);
+class _$InnerIotDevicesUpdateImpl implements InnerIotDevicesUpdate {
+  const _$InnerIotDevicesUpdateImpl(this.iotDevicesDataWrapper);
 
   @override
   final IotDevicesDataWrapper iotDevicesDataWrapper;
@@ -404,7 +408,7 @@ class _$InnerIotDevicesUpdate implements InnerIotDevicesUpdate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InnerIotDevicesUpdate &&
+            other is _$InnerIotDevicesUpdateImpl &&
             (identical(other.iotDevicesDataWrapper, iotDevicesDataWrapper) ||
                 other.iotDevicesDataWrapper == iotDevicesDataWrapper));
   }
@@ -415,9 +419,9 @@ class _$InnerIotDevicesUpdate implements InnerIotDevicesUpdate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InnerIotDevicesUpdateCopyWith<_$InnerIotDevicesUpdate> get copyWith =>
-      __$$InnerIotDevicesUpdateCopyWithImpl<_$InnerIotDevicesUpdate>(
-          this, _$identity);
+  _$$InnerIotDevicesUpdateImplCopyWith<_$InnerIotDevicesUpdateImpl>
+      get copyWith => __$$InnerIotDevicesUpdateImplCopyWithImpl<
+          _$InnerIotDevicesUpdateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -501,29 +505,29 @@ class _$InnerIotDevicesUpdate implements InnerIotDevicesUpdate {
 abstract class InnerIotDevicesUpdate implements IotDevicesEvent {
   const factory InnerIotDevicesUpdate(
           final IotDevicesDataWrapper iotDevicesDataWrapper) =
-      _$InnerIotDevicesUpdate;
+      _$InnerIotDevicesUpdateImpl;
 
   IotDevicesDataWrapper get iotDevicesDataWrapper;
   @JsonKey(ignore: true)
-  _$$InnerIotDevicesUpdateCopyWith<_$InnerIotDevicesUpdate> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$InnerIotDevicesUpdateImplCopyWith<_$InnerIotDevicesUpdateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$InnerIotDevicesErrorCopyWith<$Res> {
-  factory _$$InnerIotDevicesErrorCopyWith(_$InnerIotDevicesError value,
-          $Res Function(_$InnerIotDevicesError) then) =
-      __$$InnerIotDevicesErrorCopyWithImpl<$Res>;
+abstract class _$$InnerIotDevicesErrorImplCopyWith<$Res> {
+  factory _$$InnerIotDevicesErrorImplCopyWith(_$InnerIotDevicesErrorImpl value,
+          $Res Function(_$InnerIotDevicesErrorImpl) then) =
+      __$$InnerIotDevicesErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object err});
 }
 
 /// @nodoc
-class __$$InnerIotDevicesErrorCopyWithImpl<$Res>
-    extends _$IotDevicesEventCopyWithImpl<$Res, _$InnerIotDevicesError>
-    implements _$$InnerIotDevicesErrorCopyWith<$Res> {
-  __$$InnerIotDevicesErrorCopyWithImpl(_$InnerIotDevicesError _value,
-      $Res Function(_$InnerIotDevicesError) _then)
+class __$$InnerIotDevicesErrorImplCopyWithImpl<$Res>
+    extends _$IotDevicesEventCopyWithImpl<$Res, _$InnerIotDevicesErrorImpl>
+    implements _$$InnerIotDevicesErrorImplCopyWith<$Res> {
+  __$$InnerIotDevicesErrorImplCopyWithImpl(_$InnerIotDevicesErrorImpl _value,
+      $Res Function(_$InnerIotDevicesErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -531,7 +535,7 @@ class __$$InnerIotDevicesErrorCopyWithImpl<$Res>
   $Res call({
     Object? err = null,
   }) {
-    return _then(_$InnerIotDevicesError(
+    return _then(_$InnerIotDevicesErrorImpl(
       null == err ? _value.err : err,
     ));
   }
@@ -539,8 +543,8 @@ class __$$InnerIotDevicesErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InnerIotDevicesError implements InnerIotDevicesError {
-  const _$InnerIotDevicesError(this.err);
+class _$InnerIotDevicesErrorImpl implements InnerIotDevicesError {
+  const _$InnerIotDevicesErrorImpl(this.err);
 
   @override
   final Object err;
@@ -554,7 +558,7 @@ class _$InnerIotDevicesError implements InnerIotDevicesError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InnerIotDevicesError &&
+            other is _$InnerIotDevicesErrorImpl &&
             const DeepCollectionEquality().equals(other.err, err));
   }
 
@@ -565,9 +569,10 @@ class _$InnerIotDevicesError implements InnerIotDevicesError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InnerIotDevicesErrorCopyWith<_$InnerIotDevicesError> get copyWith =>
-      __$$InnerIotDevicesErrorCopyWithImpl<_$InnerIotDevicesError>(
-          this, _$identity);
+  _$$InnerIotDevicesErrorImplCopyWith<_$InnerIotDevicesErrorImpl>
+      get copyWith =>
+          __$$InnerIotDevicesErrorImplCopyWithImpl<_$InnerIotDevicesErrorImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -649,12 +654,13 @@ class _$InnerIotDevicesError implements InnerIotDevicesError {
 }
 
 abstract class InnerIotDevicesError implements IotDevicesEvent {
-  const factory InnerIotDevicesError(final Object err) = _$InnerIotDevicesError;
+  const factory InnerIotDevicesError(final Object err) =
+      _$InnerIotDevicesErrorImpl;
 
   Object get err;
   @JsonKey(ignore: true)
-  _$$InnerIotDevicesErrorCopyWith<_$InnerIotDevicesError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$InnerIotDevicesErrorImplCopyWith<_$InnerIotDevicesErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -666,6 +672,7 @@ mixin _$IotDevicesState {
     required TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)
         update,
     required TResult Function() errorConnection,
+    required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -674,6 +681,7 @@ mixin _$IotDevicesState {
     TResult? Function()? loading,
     TResult? Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult? Function()? errorConnection,
+    TResult? Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -682,6 +690,7 @@ mixin _$IotDevicesState {
     TResult Function()? loading,
     TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult Function()? errorConnection,
+    TResult Function()? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -691,6 +700,7 @@ mixin _$IotDevicesState {
     required TResult Function(Loading value) loading,
     required TResult Function(Update value) update,
     required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(Empty value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -699,6 +709,7 @@ mixin _$IotDevicesState {
     TResult? Function(Loading value)? loading,
     TResult? Function(Update value)? update,
     TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(Empty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -707,6 +718,7 @@ mixin _$IotDevicesState {
     TResult Function(Loading value)? loading,
     TResult Function(Update value)? update,
     TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -731,23 +743,25 @@ class _$IotDevicesStateCopyWithImpl<$Res, $Val extends IotDevicesState>
 }
 
 /// @nodoc
-abstract class _$$InitialCopyWith<$Res> {
-  factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) then) =
-      __$$InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialCopyWithImpl<$Res>
-    extends _$IotDevicesStateCopyWithImpl<$Res, _$Initial>
-    implements _$$InitialCopyWith<$Res> {
-  __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$IotDevicesStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$InitialImpl implements Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -757,7 +771,7 @@ class _$Initial implements Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -771,6 +785,7 @@ class _$Initial implements Initial {
     required TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)
         update,
     required TResult Function() errorConnection,
+    required TResult Function() empty,
   }) {
     return initial();
   }
@@ -782,6 +797,7 @@ class _$Initial implements Initial {
     TResult? Function()? loading,
     TResult? Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult? Function()? errorConnection,
+    TResult? Function()? empty,
   }) {
     return initial?.call();
   }
@@ -793,6 +809,7 @@ class _$Initial implements Initial {
     TResult Function()? loading,
     TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult Function()? errorConnection,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -808,6 +825,7 @@ class _$Initial implements Initial {
     required TResult Function(Loading value) loading,
     required TResult Function(Update value) update,
     required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(Empty value) empty,
   }) {
     return initial(this);
   }
@@ -819,6 +837,7 @@ class _$Initial implements Initial {
     TResult? Function(Loading value)? loading,
     TResult? Function(Update value)? update,
     TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(Empty value)? empty,
   }) {
     return initial?.call(this);
   }
@@ -830,6 +849,7 @@ class _$Initial implements Initial {
     TResult Function(Loading value)? loading,
     TResult Function(Update value)? update,
     TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -840,27 +860,29 @@ class _$Initial implements Initial {
 }
 
 abstract class Initial implements IotDevicesState {
-  const factory Initial() = _$Initial;
+  const factory Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<$Res> {
-  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
-      __$$LoadingCopyWithImpl<$Res>;
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<$Res>
-    extends _$IotDevicesStateCopyWithImpl<$Res, _$Loading>
-    implements _$$LoadingCopyWith<$Res> {
-  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$IotDevicesStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$LoadingImpl implements Loading {
+  const _$LoadingImpl();
 
   @override
   String toString() {
@@ -870,7 +892,7 @@ class _$Loading implements Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
 
   @override
@@ -884,6 +906,7 @@ class _$Loading implements Loading {
     required TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)
         update,
     required TResult Function() errorConnection,
+    required TResult Function() empty,
   }) {
     return loading();
   }
@@ -895,6 +918,7 @@ class _$Loading implements Loading {
     TResult? Function()? loading,
     TResult? Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult? Function()? errorConnection,
+    TResult? Function()? empty,
   }) {
     return loading?.call();
   }
@@ -906,6 +930,7 @@ class _$Loading implements Loading {
     TResult Function()? loading,
     TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult Function()? errorConnection,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -921,6 +946,7 @@ class _$Loading implements Loading {
     required TResult Function(Loading value) loading,
     required TResult Function(Update value) update,
     required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(Empty value) empty,
   }) {
     return loading(this);
   }
@@ -932,6 +958,7 @@ class _$Loading implements Loading {
     TResult? Function(Loading value)? loading,
     TResult? Function(Update value)? update,
     TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(Empty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -943,6 +970,7 @@ class _$Loading implements Loading {
     TResult Function(Loading value)? loading,
     TResult Function(Update value)? update,
     TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -953,22 +981,24 @@ class _$Loading implements Loading {
 }
 
 abstract class Loading implements IotDevicesState {
-  const factory Loading() = _$Loading;
+  const factory Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$UpdateCopyWith<$Res> {
-  factory _$$UpdateCopyWith(_$Update value, $Res Function(_$Update) then) =
-      __$$UpdateCopyWithImpl<$Res>;
+abstract class _$$UpdateImplCopyWith<$Res> {
+  factory _$$UpdateImplCopyWith(
+          _$UpdateImpl value, $Res Function(_$UpdateImpl) then) =
+      __$$UpdateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({IotDevicesDataWrapper iotDevicesDataWrapper});
 }
 
 /// @nodoc
-class __$$UpdateCopyWithImpl<$Res>
-    extends _$IotDevicesStateCopyWithImpl<$Res, _$Update>
-    implements _$$UpdateCopyWith<$Res> {
-  __$$UpdateCopyWithImpl(_$Update _value, $Res Function(_$Update) _then)
+class __$$UpdateImplCopyWithImpl<$Res>
+    extends _$IotDevicesStateCopyWithImpl<$Res, _$UpdateImpl>
+    implements _$$UpdateImplCopyWith<$Res> {
+  __$$UpdateImplCopyWithImpl(
+      _$UpdateImpl _value, $Res Function(_$UpdateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -976,7 +1006,7 @@ class __$$UpdateCopyWithImpl<$Res>
   $Res call({
     Object? iotDevicesDataWrapper = null,
   }) {
-    return _then(_$Update(
+    return _then(_$UpdateImpl(
       null == iotDevicesDataWrapper
           ? _value.iotDevicesDataWrapper
           : iotDevicesDataWrapper // ignore: cast_nullable_to_non_nullable
@@ -987,8 +1017,8 @@ class __$$UpdateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Update implements Update {
-  const _$Update(this.iotDevicesDataWrapper);
+class _$UpdateImpl implements Update {
+  const _$UpdateImpl(this.iotDevicesDataWrapper);
 
   @override
   final IotDevicesDataWrapper iotDevicesDataWrapper;
@@ -1002,7 +1032,7 @@ class _$Update implements Update {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Update &&
+            other is _$UpdateImpl &&
             (identical(other.iotDevicesDataWrapper, iotDevicesDataWrapper) ||
                 other.iotDevicesDataWrapper == iotDevicesDataWrapper));
   }
@@ -1013,8 +1043,8 @@ class _$Update implements Update {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateCopyWith<_$Update> get copyWith =>
-      __$$UpdateCopyWithImpl<_$Update>(this, _$identity);
+  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
+      __$$UpdateImplCopyWithImpl<_$UpdateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1024,6 +1054,7 @@ class _$Update implements Update {
     required TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)
         update,
     required TResult Function() errorConnection,
+    required TResult Function() empty,
   }) {
     return update(iotDevicesDataWrapper);
   }
@@ -1035,6 +1066,7 @@ class _$Update implements Update {
     TResult? Function()? loading,
     TResult? Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult? Function()? errorConnection,
+    TResult? Function()? empty,
   }) {
     return update?.call(iotDevicesDataWrapper);
   }
@@ -1046,6 +1078,7 @@ class _$Update implements Update {
     TResult Function()? loading,
     TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult Function()? errorConnection,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -1061,6 +1094,7 @@ class _$Update implements Update {
     required TResult Function(Loading value) loading,
     required TResult Function(Update value) update,
     required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(Empty value) empty,
   }) {
     return update(this);
   }
@@ -1072,6 +1106,7 @@ class _$Update implements Update {
     TResult? Function(Loading value)? loading,
     TResult? Function(Update value)? update,
     TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(Empty value)? empty,
   }) {
     return update?.call(this);
   }
@@ -1083,6 +1118,7 @@ class _$Update implements Update {
     TResult Function(Loading value)? loading,
     TResult Function(Update value)? update,
     TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -1094,34 +1130,34 @@ class _$Update implements Update {
 
 abstract class Update implements IotDevicesState {
   const factory Update(final IotDevicesDataWrapper iotDevicesDataWrapper) =
-      _$Update;
+      _$UpdateImpl;
 
   IotDevicesDataWrapper get iotDevicesDataWrapper;
   @JsonKey(ignore: true)
-  _$$UpdateCopyWith<_$Update> get copyWith =>
+  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorConnectionCopyWith<$Res> {
-  factory _$$ErrorConnectionCopyWith(
-          _$ErrorConnection value, $Res Function(_$ErrorConnection) then) =
-      __$$ErrorConnectionCopyWithImpl<$Res>;
+abstract class _$$ErrorConnectionImplCopyWith<$Res> {
+  factory _$$ErrorConnectionImplCopyWith(_$ErrorConnectionImpl value,
+          $Res Function(_$ErrorConnectionImpl) then) =
+      __$$ErrorConnectionImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorConnectionCopyWithImpl<$Res>
-    extends _$IotDevicesStateCopyWithImpl<$Res, _$ErrorConnection>
-    implements _$$ErrorConnectionCopyWith<$Res> {
-  __$$ErrorConnectionCopyWithImpl(
-      _$ErrorConnection _value, $Res Function(_$ErrorConnection) _then)
+class __$$ErrorConnectionImplCopyWithImpl<$Res>
+    extends _$IotDevicesStateCopyWithImpl<$Res, _$ErrorConnectionImpl>
+    implements _$$ErrorConnectionImplCopyWith<$Res> {
+  __$$ErrorConnectionImplCopyWithImpl(
+      _$ErrorConnectionImpl _value, $Res Function(_$ErrorConnectionImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ErrorConnection implements ErrorConnection {
-  const _$ErrorConnection();
+class _$ErrorConnectionImpl implements ErrorConnection {
+  const _$ErrorConnectionImpl();
 
   @override
   String toString() {
@@ -1131,7 +1167,7 @@ class _$ErrorConnection implements ErrorConnection {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorConnection);
+        (other.runtimeType == runtimeType && other is _$ErrorConnectionImpl);
   }
 
   @override
@@ -1145,6 +1181,7 @@ class _$ErrorConnection implements ErrorConnection {
     required TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)
         update,
     required TResult Function() errorConnection,
+    required TResult Function() empty,
   }) {
     return errorConnection();
   }
@@ -1156,6 +1193,7 @@ class _$ErrorConnection implements ErrorConnection {
     TResult? Function()? loading,
     TResult? Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult? Function()? errorConnection,
+    TResult? Function()? empty,
   }) {
     return errorConnection?.call();
   }
@@ -1167,6 +1205,7 @@ class _$ErrorConnection implements ErrorConnection {
     TResult Function()? loading,
     TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
     TResult Function()? errorConnection,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (errorConnection != null) {
@@ -1182,6 +1221,7 @@ class _$ErrorConnection implements ErrorConnection {
     required TResult Function(Loading value) loading,
     required TResult Function(Update value) update,
     required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(Empty value) empty,
   }) {
     return errorConnection(this);
   }
@@ -1193,6 +1233,7 @@ class _$ErrorConnection implements ErrorConnection {
     TResult? Function(Loading value)? loading,
     TResult? Function(Update value)? update,
     TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(Empty value)? empty,
   }) {
     return errorConnection?.call(this);
   }
@@ -1204,6 +1245,7 @@ class _$ErrorConnection implements ErrorConnection {
     TResult Function(Loading value)? loading,
     TResult Function(Update value)? update,
     TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) {
     if (errorConnection != null) {
@@ -1214,5 +1256,126 @@ class _$ErrorConnection implements ErrorConnection {
 }
 
 abstract class ErrorConnection implements IotDevicesState {
-  const factory ErrorConnection() = _$ErrorConnection;
+  const factory ErrorConnection() = _$ErrorConnectionImpl;
+}
+
+/// @nodoc
+abstract class _$$EmptyImplCopyWith<$Res> {
+  factory _$$EmptyImplCopyWith(
+          _$EmptyImpl value, $Res Function(_$EmptyImpl) then) =
+      __$$EmptyImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmptyImplCopyWithImpl<$Res>
+    extends _$IotDevicesStateCopyWithImpl<$Res, _$EmptyImpl>
+    implements _$$EmptyImplCopyWith<$Res> {
+  __$$EmptyImplCopyWithImpl(
+      _$EmptyImpl _value, $Res Function(_$EmptyImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EmptyImpl implements Empty {
+  const _$EmptyImpl();
+
+  @override
+  String toString() {
+    return 'IotDevicesState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmptyImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)
+        update,
+    required TResult Function() errorConnection,
+    required TResult Function() empty,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
+    TResult? Function()? errorConnection,
+    TResult? Function()? empty,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(IotDevicesDataWrapper iotDevicesDataWrapper)? update,
+    TResult Function()? errorConnection,
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Update value) update,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(Empty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Update value)? update,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(Empty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Update value)? update,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(Empty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Empty implements IotDevicesState {
+  const factory Empty() = _$EmptyImpl;
 }

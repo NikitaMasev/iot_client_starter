@@ -36,6 +36,8 @@ abstract class IotDevicesState with _$IotDevicesState {
   ) = Update;
 
   const factory IotDevicesState.errorConnection() = ErrorConnection;
+
+  const factory IotDevicesState.empty() = Empty;
 }
 
 class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
@@ -94,7 +96,11 @@ class IotDevicesBloc extends Bloc<IotDevicesEvent, IotDevicesState> {
     final IotDevicesDataWrapper iotDevicesDataWrapper,
     final Emitter<IotDevicesState> emit,
   ) async {
-    emit(IotDevicesState.update(iotDevicesDataWrapper));
+    if (iotDevicesDataWrapper.devices.isEmpty) {
+      emit(const IotDevicesState.empty());
+    } else {
+      emit(IotDevicesState.update(iotDevicesDataWrapper));
+    }
   }
 
   Future<void> _controlDevice(
