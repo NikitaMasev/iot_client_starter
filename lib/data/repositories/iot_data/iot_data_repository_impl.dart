@@ -51,18 +51,14 @@ class IotDataRepositoryImpl
       StreamController<ChannelState>.broadcast();
 
   late final StreamSubscription _subLocalChannelState;
-  ChannelState _lastLocalChannelState = ChannelInitial();
   var _globalPause = false;
 
   @override
   void sendClient(final Client client) {
-    if (useLogging) {
-      print('IotDataRepositoryImpl sendClient $_lastLocalChannelState');
-    }
-    if (_lastLocalChannelState is ChannelReady) {
-      localChannelDataProvider.send(client);
-    } else {
+    if (remoteResumable.isResumed()) {
       remoteChannelDataProvider.send(client);
+    } else {
+      localChannelDataProvider.send(client);
     }
   }
 
@@ -80,8 +76,7 @@ class IotDataRepositoryImpl
 
   @override
   Future<IotState> lastState() {
-    if (_lastLocalChannelState is ChannelDisconnected ||
-        _lastLocalChannelState is ChannelError) {
+    if (remoteResumable.isResumed()) {
       return remoteChannelStateWatcher.lastState().then(_toIotState);
     } else {
       return localChannelStateWatcher.lastState().then(_toIotState);
@@ -106,8 +101,6 @@ class IotDataRepositoryImpl
   void _run() {
     _subLocalChannelState = localChannelStateWatcher.watchState().listen(
       (final state) {
-        _lastLocalChannelState = state;
-
         if (useLogging) {
           print('IotDataRepositoryImpl localStateWatcher $state');
         }
@@ -123,9 +116,11 @@ class IotDataRepositoryImpl
             break;
           case ChannelDisconnected():
             remoteResumable.resume();
+            _localProxyChannelStateController.add(ChannelLoading());
             break;
           case ChannelError():
             remoteResumable.resume();
+            _localProxyChannelStateController.add(ChannelLoading());
             break;
           case ChannelReady():
             remotePausable.pause();
@@ -135,6 +130,7 @@ class IotDataRepositoryImpl
     );
     localRunnable.run();
     remoteRunnable.run();
+    remotePausable.pause();
   }
 
   @override

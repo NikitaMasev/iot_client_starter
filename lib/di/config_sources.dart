@@ -137,7 +137,7 @@ Future<WebSocketChannelProvider> _configWebSocketChannel({
       port: port,
       useLogging: useLogging,
       connectionOptions: const SocketConnectionOptions(
-        pingIntervalMs: 2000,
+        pingIntervalMs: 1000,
         timeoutConnectionMs: 1000,
 
         /// see ping/pong messages in [logEventStream] stream
