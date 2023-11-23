@@ -4,6 +4,7 @@ import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/c
 import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/channel_state_watcher.dart';
 import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/raw_data_channel_provider.dart';
 import 'package:iot_internal/iot_internal.dart';
+import 'package:launchable_interfaces/launchable_interfaces.dart';
 import 'package:websocket_universal/websocket_universal.dart';
 
 class WebSocketChannelProvider

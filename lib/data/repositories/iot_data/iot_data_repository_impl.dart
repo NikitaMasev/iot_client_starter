@@ -10,6 +10,7 @@ import 'package:iot_client_starter/data/sources/iot_provider/websocket_channel/c
 import 'package:iot_internal/iot_internal.dart';
 import 'package:iot_models/models/client.dart';
 import 'package:iot_models/models/iot_devices_data_wrapper.dart';
+import 'package:launchable_interfaces/launchable_interfaces.dart';
 import 'package:rxdart/rxdart.dart';
 
 class IotDataRepositoryImpl

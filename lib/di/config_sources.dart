@@ -10,6 +10,7 @@ import 'package:iot_client_starter/data/sources/shared_persistent_impl.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:iot_internal/iot_internal.dart';
 import 'package:iot_models/iot_models.dart';
+import 'package:launchable_interfaces/launchable_interfaces.dart';
 import 'package:websocket_universal/websocket_universal.dart';
 
 Future<SharedPersistent> _configSharedPersistent() async =>
